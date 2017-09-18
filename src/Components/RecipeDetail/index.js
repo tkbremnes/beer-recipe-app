@@ -3,7 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
-import HopsComposite from '../HopsComposite/index.jsx';
+import HopsComposite from '../Hops';
 import YeastsComposite from '../YeastsComposite/index.jsx';
 import RecipeHeader from '../RecipeHeader/RecipeHeader.jsx';
 
