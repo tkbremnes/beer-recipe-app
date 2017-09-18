@@ -13,6 +13,10 @@ import BruiButton from "../BruiButton";
 import GravityTargets from "./GravityTargets";
 import FermentationSchedule from "./FermentationSchedule";
 
+const BrewerySettings = {
+    batchSize: 19,
+};
+
 class Recipe extends Component {
     renderBoilSchedele(boilTime) {
         if (!boilTime) {
@@ -101,7 +105,7 @@ class Recipe extends Component {
             <RecipeGrid>
                 <Hurk>
                     <BruiCard>
-                        <p className="readable-text">This recipe makes { recipe.meta.batch_volume } liters of beer.</p>
+                        <p className="readable-text">This recipe makes { BrewerySettings.batchSize } liters of beer.</p>
 
                         {/* <p className="readable-text quote">{ recipe.meta.comment && recipe.comment.body }</p> */}
                         {/* <p className="readable-text quote">{ recipe.description }</p> */}

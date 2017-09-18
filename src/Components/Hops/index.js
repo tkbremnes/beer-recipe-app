@@ -5,15 +5,19 @@ import BruiCard from "../BruiCard";
 
 class Hops extends Component {
     render() {
+        const {
+            batchSize,
+        } = this.props;
+
         function renderHeader() {
             return (
                 <thead>
-                <tr>
-                <td className="weight"><brui-label-text></brui-label-text></td>
-                <td className="name"><brui-label-text></brui-label-text></td>
-                <td className="aa"><brui-label-text></brui-label-text></td>
-                <td className="time"></td>
-                </tr>
+                    <tr>
+                        <td className="weight"><brui-label-text></brui-label-text></td>
+                        <td className="name"><brui-label-text></brui-label-text></td>
+                        <td className="aa"><brui-label-text></brui-label-text></td>
+                        <td className="time"></td>
+                    </tr>
                 </thead>
             )
         }
@@ -37,7 +41,7 @@ class Hops extends Component {
             return (
                 <tbody>
                 { hops.map((hop, index) => {
-                    const weight = hop.weight;
+                    const weight = Math.round(hop.amount * batchSize);
                     const time = hop.time;
                     const name = hop.hop.name;
                     const alpha_acids = hop.hop.alpha_acids;
@@ -118,24 +122,22 @@ class Hops extends Component {
     }
 }
 
-class HopsComposite extends React.Component {
-    render() {
-        function collectionToArray(collection) {
-            return Object.keys(collection).map((key) => {
-                return collection[key]
-            });
-        }
-        const hops = collectionToArray(this.props.hops);
-
-        return (
-            <BruiCard header="Hops">
-            <Hops
-            hops={ hops }
-
-            />
-            </BruiCard>
-        )
+function HopsComposite({hops, batchSize}) {
+    function collectionToArray(collection) {
+        return Object.keys(collection).map((key) => {
+            return collection[key]
+        });
     }
+    const hopsArray = collectionToArray(hops);
+
+    return (
+        <BruiCard header="Hops">
+            <Hops
+                hops={ hopsArray }
+                batchSize={ batchSize }
+            />
+        </BruiCard>
+    );
 }
 
 HopsComposite.propTypes = {
