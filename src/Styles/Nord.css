@@ -1,0 +1,50 @@
+:root {
+     /*Base component color of "Polar Night".*/
+    --nord-0: #2E3440;
+
+     /*Lighter shade color of the base component color.*/
+    --nord-1: #3B4252;
+
+     /*Lighter shade color of the base component color.*/
+    --nord-2: #434C5E;
+
+     /*Lighter shade color of the base component color.*/
+    --nord-3: #4C566A;
+
+     /*Base component color of "Snow Storm".*/
+    --nord-4: #D8DEE9;
+
+     /*Lighter shade color of the base component color.*/
+    --nord-5: #E5E9F0;
+
+     /*Lighter shade color of the base component color.*/
+    --nord-6: #ECEFF4;
+
+     /*Bluish core color.*/
+    --nord-7:  #8FBCBB;
+
+     /*Bluish core accent color.*/
+    --nord-8:  #88C0D0;
+
+     /*Bluish core color.*/
+    --nord-9:  #81A1C1;
+
+     /*Bluish core color.*/
+    --nord-10: #5E81AC;
+
+     /*Colorful component color.*/
+    --nord-11: #BF616A;
+
+     /*Colorful component color.*/
+    --nord-12: #D08770;
+
+     /*Colorful component color.*/
+    --nord-13: #EBCB8B;
+
+     /*Colorful component color.*/
+    --nord-14: #A3BE8C;
+
+     /*Colorful component color.*/
+    --nord-15: #B48EAD;
+
+}

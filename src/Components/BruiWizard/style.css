@@ -1,0 +1,71 @@
+.BruiWizard {
+    overflow: hidden;
+    padding-bottom: calc(48px - 8px);
+    position: relative;
+}
+
+.BruiWizard .scrollwrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
+.BruiWizard .stepwrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    transition: transform .3s;
+    /*overflow-y: auto;*/
+}
+
+.BruiWizard .stepwrapper > * {
+    min-width: 100%;
+    padding: var(--main-box-padding);
+    overflow-y: auto;
+}
+
+.BruiWizard .nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+    background-color: #FFF;
+    justify-content: space-between;
+}
+
+.BruiWizard .navbutton {
+    width: 100px;
+}
+.BruiWizard .navbutton.previous {
+    text-align: left;
+    padding-left: 12px;
+}
+.BruiWizard .navbutton.next {
+    text-align: right;
+    padding-right: 12px;
+}
+
+.BruiWizard .navbutton:disabled {
+    opacity: 0;
+}
+
+.BruiWizard .steps {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.BruiWizard .step {
+    height: 10px;
+    width: 10px;
+    background-color: rgba(0, 0, 0, .12);
+    border-radius: 50px;
+    margin: 0 8px;
+}
+
+.BruiWizard .step.active {
+    background-color: var(--color5);
+}

@@ -1,0 +1,30 @@
+.AppHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--nord-dark-color);
+    color: #fff;
+    padding: 4px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 7px 1px rgba(0, 0, 0, .54);
+    z-index: 99;
+    padding-left: 50px;
+
+    height: var(--main-topbar-height);
+}
+
+.AppHeader .text {
+    font-size: 16px;
+}
+
+.AppHeader .hamburger {
+    height: 40px;
+    width: 40px;
+    background: url(/images/ic_menu_black_24px.svg) center center no-repeat;
+    border: none;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}

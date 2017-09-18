@@ -1,0 +1,10 @@
+.RecipeCreatorSidebar {
+    flex-shrink: 0;
+    width: 300px;
+    padding: var(--main-box-padding);
+    background: #FFF;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .12);
+
+    border-left: 1px solid rgba(0, 0, 0, .12);
+    overflow-y: auto;
+}

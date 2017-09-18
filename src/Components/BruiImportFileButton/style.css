@@ -1,0 +1,16 @@
+.BruiImportFileButton {
+    position: relative;
+}
+
+.BruiImportFileButton .fileinput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 40px;
+}
+
+.BruiImportFileButton .brui-button {
+    width: 100%;
+}

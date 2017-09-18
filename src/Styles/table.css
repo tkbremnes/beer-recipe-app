@@ -1,0 +1,176 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  /*font-family: "Noto Mono";*/
+}
+
+thead td {
+  padding-top: 0;
+  height: auto !important;
+}
+
+thead td.aa {
+  width: 7ch;
+}
+
+thead td.time {
+  width: 8ch;
+}
+
+thead td.weight {
+  width: 7ch;
+}
+
+thead td.name {
+}
+
+thead td.color {
+  width: 7ch;
+}
+thead td.color.input {
+    width: 9ch;
+}
+
+thead td.total {
+  width: 5ch;
+}
+
+thead td.id {
+  width: 8ch;
+}
+
+td {
+  margin: 0;
+  padding: 0;
+  vertical-align: bottom;
+}
+
+td .text-content {
+    padding: 8px 4px;
+}
+
+table.zebra tbody .denom-cell {
+    text-align: right;
+}
+
+table.zebra tr:nth-of-type(even) {
+    /*background-color: HSL(33, 90%, 96%);*/
+    /*background-color: HSL(33, 90%, 98%);*/
+    background-color: var(--nord-6);
+}
+
+
+.InputTable {
+    margin: 12px 0;
+}
+
+.input-row td .input-wrapper {
+  position: relative;
+  height: 46px;
+  padding-top: 16px;
+}
+
+table .denom {
+  position: absolute;
+  bottom: 4px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, .54);
+}
+
+.right-aligned-denom {
+  text-align: right;
+  padding-right: 10px;
+}
+
+table .input-row .denom {
+    right: 2px;
+}
+
+table input {
+  border-bottom: 1px solid rgba(0, 0, 0, .12) !important;
+  font-size: 1em;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 2px 6px;
+  font-size: 16px;
+  border-left: 1px solid rgba(0, 0, 0, .12);
+  background: transparent;
+  color: rgba(0, 0, 0, .87);
+  outline: none;
+}
+
+table .input-row td:first-of-type input {
+  border-left-color: transparent;
+}
+
+table input::placeholder {
+  color: rgba(0, 0, 0, .30);
+}
+
+table input:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 1) !important;
+}
+
+table tbody tr:nth-of-type(even) {
+  /*background: rgba(0, 0, 0, .05);*/
+}
+
+ebc-color-square {
+  position: absolute;
+  right: 4px;
+  bottom: 10px;
+  background: red;
+}
+
+.color-cell input {
+  padding-right: 28px;
+  text-align: right;
+}
+
+.total-cell {
+  text-align: right;
+
+  font-size: 0.8em;
+  padding-bottom: 6px;
+}
+.total-cell p {
+  color: rgba(0, 0, 0, .84);
+}
+
+.hop-input-table .time-cell input {
+  padding-right: 24px;
+}
+
+.hop-input-table .aa-cell input {
+  padding-right: 14px;
+}
+
+.hop-input-table thead td.weight {
+  width: 7ch;
+}
+
+.denom-cell .text-content {
+    text-align: right;
+    position: relative;
+}
+
+tr.separator {
+    border-top: 1px solid black !important;
+}
+
+.denom-cell.weight .text-content {
+    padding-right: 12px;
+}
+.denom-cell.total .text-content {
+    padding-right: 12px;
+}
+.denom-cell.color .text-content,
+.denom-cell.time .text-content {
+    padding-right: 28px;
+}
+table .text-content .denom {
+    bottom: 7px;
+}

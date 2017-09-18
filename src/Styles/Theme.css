@@ -1,0 +1,5 @@
+:root {
+    --main-button-background-color: var(--nord-3);
+    --main-button-text-color: #fff;
+    --labelText: var(--nord-3);
+}

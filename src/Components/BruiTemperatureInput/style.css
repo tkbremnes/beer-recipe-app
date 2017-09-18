@@ -1,0 +1,27 @@
+.BruiTemperatureInput {
+    position: relative;
+}
+
+.BruiTemperatureInput-labelText {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color5);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.BruiTemperatureInput-input {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    width: 100%;
+    color: var(--main-text-color);
+
+    font-size: 16px;
+}
+
+.BruiTemperatureInput-input:focus {
+    border-bottom: 1px solid var(--main-text-color);
+}

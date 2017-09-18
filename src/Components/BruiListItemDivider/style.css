@@ -1,0 +1,31 @@
+.BruiListItemDivider::before,
+.BruiListItemDivider::after {
+    content: '';
+    background: rgba(0, 0, 0, .12);
+    display: block;
+    height: 1px;
+    padding-top: 0px;
+    margin-top: 7px;
+}
+
+.BruiListItemDivider::before {
+    margin-right: 2px;
+    width: 8px;
+}
+
+
+.BruiListItemDivider::after {
+    margin-left: 2px;
+    width: 100%;
+}
+.BruiListItemDivider span {
+    flex-shrink: 0;
+}
+
+.BruiListItemDivider {
+    color: rgba(0, 0, 0, .54);
+    text-transform: uppercase;
+    font-size: 11px;
+    margin: 8px 0;
+    display: flex;
+}

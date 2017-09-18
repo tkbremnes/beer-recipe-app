@@ -1,0 +1,27 @@
+.BruiFloatingAddButton {
+    background-color: var(--nord-11);
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .54);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+.BruiFloatingAddButton:hover {
+    filter: saturate(150%);
+}
+.BruiFloatingAddButton:focus {
+    outline: none;
+    transform: scale(1.05);
+}
+
+.BruiFloatingAddButton svg {
+    height: 40px;
+    width: 40px;
+}

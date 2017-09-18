@@ -1,0 +1,34 @@
+.BruiVolumeInput {
+    position: relative;
+}
+
+.BruiVolumeInput-labelText {
+    margin: 0;
+    font-size: 12px;
+    color: var(--color5);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.BruiVolumeInput-input {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    width: 100%;
+    color: var(--main-text-color);
+    font-size: 16px;
+    padding-right: 14px;
+}
+
+.BruiVolumeInput-input:focus {
+    border-bottom: 1px solid var(--main-text-color);
+}
+
+.BruiVolumeInput-denom {
+    position: absolute;
+    bottom: -4px;
+    right: 2px;
+    pointer-events: none;
+}

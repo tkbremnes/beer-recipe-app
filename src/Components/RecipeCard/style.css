@@ -1,0 +1,28 @@
+.RecipeCard-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: rgba(0, 0, 0, .87);
+}
+
+.RecipeCard-type {
+  color: rgba(0, 0, 0, .54);
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.RecipeCard-metaWrapper {
+  display: flex;
+}
+
+.RecipeCard-metadata:not(:first-of-type) {
+  border-left: 1px solid rgba(0, 0, 0, .12);
+  padding-left: 8px;
+}
+
+.RecipeCard-metadata {
+  color: rgba(0, 0, 0, .54);
+  font-size: 14px;
+  margin-right: 8px;
+}

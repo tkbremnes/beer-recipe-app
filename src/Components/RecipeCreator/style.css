@@ -1,0 +1,25 @@
+.RecipeCreator {
+    /*padding: 8px;*/
+
+    display: flex;
+    flex-direction: row;
+    height: var(--fullpage-height);
+}
+.RecipeCreator >:first-child {
+    flex-grow: 1;
+}
+
+.RecipeCreator .float-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.RecipeCreator .brui-button {
+    margin-bottom: -8px;
+}
+
+@media (max-width:775px) {
+    .RecipeCreatorSidebar {
+        display: none;
+    }
+}

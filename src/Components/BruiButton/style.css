@@ -1,0 +1,47 @@
+.brui-button {
+    border: none;
+    background: transparent;
+    padding: 6px 0;
+
+    outline: none;
+}
+.content-wrapper {
+    height: 36px;
+    min-width: 64px;
+    border-radius: 2px;
+    padding: 4px 16px;
+    background-color: var(--main-button-background-color);
+    color: var(--main-button-text-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    box-sizing: border-box;
+    line-height: 28px;
+}
+
+.disabled {
+    pointer-events: none;
+}
+.disabled .content-wrapper {
+    background-color: hsl(42, 100%, 80%);
+    font-style: italic;
+}
+
+.brui-button:not(:last-child) {
+    margin: 0 16px 0 0;
+}
+.brui-button:last-child {
+    margin: 0;
+}
+
+.brui-button.secondary .content-wrapper {
+    background-color: transparent;
+    color: rgba(0, 0, 0, .87);
+}
+.brui-button.secondary:focus .content-wrapper {
+    background-color: rgba(0, 0, 0, .12);
+    color: rgba(0, 0, 0, .87);
+}
+
+.brui-button:focus .content-wrapper {
+    background-color: var(--nord-11);
+}

@@ -1,0 +1,247 @@
+/* TODO: make reset sensible */
+
+:root {
+    /* Source: http://www.colorcombos.com/color-schemes/283/ColorCombo283.html */
+    --color1: #828277;
+    --color2: #d4e8c1;
+    --color3: #8db87c;
+    --color4: #f5d769;
+    --color5: #ed8a3f;
+
+    --main-text-color: rgba(0, 0, 0, .87);
+    --main-background-color: var(--nord-6);
+
+    --nord-dark-color: #4C566A;
+
+    /*background-color: HSL(33, 90%, 96%);*/
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+p {
+  word-wrap: break-word;
+}
+
+*::selection {
+    background-color: hsl(42, 100%, 50%);
+}
+*::-webkit-selection {
+    background-color: hsl(42, 100%, 50%);
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    padding: 0;
+}
+
+#super-main {
+    height: 100vh;
+}
+
+body {
+    width: 100%;
+    color: var(--main-text-color);
+    background-color: var(--main-background-color);
+    height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+    cursor: default;
+    vertical-align: top;
+    -webkit-user-select: none;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.knurk {
+    margin: 8px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.knurk tr td {
+    padding: 8px;
+}
+
+.knurk thead tr td {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.knurk tr td:last-of-type {
+    text-align: right;
+}
+
+.secondary-text {
+    color: rgba(0, 0, 0, .38);
+}
+
+.table .item-row:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+.table .item-row:last-child {
+    border-bottom: none !important;
+}
+
+.readable-text {
+    font-size: 16px;
+    line-height: 1.4em;
+    margin-bottom: 1em;
+}
+
+p:empty {
+    display: none;
+}
+
+.quote {
+    font-style: italic;
+    color: rgba(0, 0, 0, .54);
+    padding: 8px 16px;
+    border-left: 5px solid rgba(0, 0, 0, .12);
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.recipe-collection {
+    position: relative;
+    overflow: hidden;
+}
+
+.recipe-collection .master,
+.recipe-collection .detail {
+    transition: transform .3s;
+
+    height: calc(100vh - var(--main-topbar-height));
+    overflow: scroll;
+}
+
+@media only screen and (max-width : 839px) {
+    .recipe-collection.recipe-selected .master {
+        transform: translateX(-100%);
+    }
+    .recipe-collection.recipe-selected .detail {
+        transform: translateX(0);
+    }
+
+    .recipe-collection .detail {
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        transform: translateX(100%);
+    }
+}
+
+a.block {
+    display: block;
+    cursor: pointer;
+}
+
+.selected {
+    outline: #c38e0d solid 3px;
+}
+brui-card:focus {
+    outline: #c38e0d solid 3px;
+}
+
+.floating-collection-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #FFF;
+    color: black;
+    text-transform: uppercase;
+    font-size: .8em;
+    width: 100%;
+    line-height: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    padding-left: 8px;
+    padding-top: 4px;
+}
+
+@media only screen and (min-width : 840px) {
+    .recipe-collection {
+        height: calc(100vh - var(--main-topbar-height));
+        display: flex;
+        overflow: hidden;
+    }
+
+    .recipe-collection .master,
+    .recipe-collection .detail {
+        overflow-y: auto;
+    }
+
+    .recipe-collection .master {
+        width: 300px;
+        border-right: 1px solid rgba(0, 0, 0, .12);
+        position: relative;
+    }
+
+    .recipe-collection .detail {
+        width: calc(100% - 300px);
+    }
+}
+
+textarea {
+  font-size: 16px;
+  line-height: 1.4em;
+  max-width: 100%;
+  min-width: 100%;
+  border: 1px solid rgba(0, 0, 0, .12);
+  padding: 0.2em .5em;
+  min-height: 120px;
+}
+
+#root {
+    overflow: auto;
+    padding-top: var(--main-topbar-height);
+}
+
+
+
+.recipe-detail-gravity {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.recipe-detail-gravity .test-outer {
+    border: 1px solid var(--nord-3);
+    width: 120px;
+    margin: 0 8px;
+}
+.recipe-detail-gravity .test-inner.upper {
+    background-color: var(--nord-3);
+    color: white;
+    padding: 4px 8px;
+    /*text-transform: uppercase;*/
+    font-size: 0.8em;
+}
+.recipe-detail-gravity .test-inner.lower {
+    padding: 4px 8px;
+    font-size: 1.2em;
+}

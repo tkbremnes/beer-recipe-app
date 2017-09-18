@@ -1,0 +1,6 @@
+:root {
+    --main-box-padding: 12px;
+
+    --main-topbar-height: 48px;
+    --fullpage-height: calc(100vh - var(--main-topbar-height));
+}

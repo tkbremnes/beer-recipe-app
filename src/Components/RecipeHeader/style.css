@@ -1,0 +1,68 @@
+.RecipeHeader {
+    padding: 18px 0 16px 0;
+    background-color: #f04e0d;
+    background-color: HSL(37, 100%, 50%);
+    background-color: var(--nord-9);
+    margin-bottom: 6px;
+    border-top: 4px solid;
+    border-bottom: 4px solid;
+    margin: '0';
+}
+
+.RecipeHeader .flavor-text {
+    display: flex;
+    flex-direction: row;
+}
+
+.RecipeHeader .statsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.RecipeHeader .stat:not(:first-of-type) {
+    border-left: 2px solid #000;
+}
+
+.RecipeHeader .stat {
+    width: 60px;
+}
+
+.RecipeHeader .desc {
+    text-align: center;
+    color: white;
+    font-family: "Slabo 27px";
+}
+
+.RecipeHeader .value {
+    text-align: center;
+    font-family: "Slabo 27px";
+}
+
+.RecipeHeader .nameWrapper {
+    flex-grow: 1,
+}
+
+.RecipeHeader .wrapperRapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 640px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.RecipeHeader h1 {
+    font-size: 30px;
+    font-family: "Slabo 27px";
+    hyphens: auto;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: #fff;
+    border-bottom: 3px solid #000;
+}
+
+.RecipeHeader .style {
+    color: #fff;
+    font-size: 11px;
+}
