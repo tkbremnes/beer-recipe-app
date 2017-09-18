@@ -74,50 +74,48 @@ class Recipe extends Component {
             <div>
 
             <RecipeGrid>
-                <Hurk>
-                    <BruiCard>
-                        <p className="readable-text">This recipe makes { BrewerySettings.batchSize } liters of beer.</p>
+                <BruiCard>
+                    <p className="readable-text">This recipe makes { BrewerySettings.batchSize } liters of beer.</p>
 
-                        {/* <p className="readable-text quote">{ recipe.meta.comment && recipe.comment.body }</p> */}
-                        {/* <p className="readable-text quote">{ recipe.description }</p> */}
+                    {/* <p className="readable-text quote">{ recipe.meta.comment && recipe.comment.body }</p> */}
+                    {/* <p className="readable-text quote">{ recipe.description }</p> */}
 
-                        { recipe.notes && recipe.notes[0] ?
-                            <p className="readable-text quote"> {recipe.notes[0].body }</p>
-                            :
-                            <span></span>
-                        }
+                    { recipe.notes && recipe.notes[0] ?
+                        <p className="readable-text quote"> {recipe.notes[0].body }</p>
+                        :
+                        <span></span>
+                    }
 
-                        <GravityTargets
-                            preboilGravity={recipe.meta.preboil_gravity}
-                            originalGravity={recipe.meta.original_gravity}
-                            finalGravity={recipe.meta.final_gravity}
-                        />
+                    <GravityTargets
+                        preboilGravity={recipe.meta.preboil_gravity}
+                        originalGravity={recipe.meta.original_gravity}
+                        finalGravity={recipe.meta.final_gravity}
+                    />
 
-                        <p
+                    <p
+                        style={{
+                            marginTop: '2em',
+                            textAlign: 'right',
+                            opacity: '.54',
+                            fontStyle: 'italic',
+                        }}
+                        ><span style={{
+                            textTransform: 'uppercase',
+                            fontWeight: 600,
+                            color: 'rgba(0, 0, 0, .54)',
+                        }}>Source</span> <span
                             style={{
-                                marginTop: '2em',
-                                textAlign: 'right',
-                                opacity: '.54',
-                                fontStyle: 'italic',
+                                textDecoration: 'underline',
+                                whiteSpace: 'nowrap',
+                                maxWidth: '320px',
+                                overflow: 'hidden',
+                                display: 'block',
+                                textOverflow: 'ellipsis',
+                                marginLeft: 'auto',
                             }}
-                            ><span style={{
-                                textTransform: 'uppercase',
-                                fontWeight: 600,
-                                color: 'rgba(0, 0, 0, .54)',
-                            }}>Source</span> <span
-                                style={{
-                                    textDecoration: 'underline',
-                                    whiteSpace: 'nowrap',
-                                    maxWidth: '320px',
-                                    overflow: 'hidden',
-                                    display: 'block',
-                                    textOverflow: 'ellipsis',
-                                    marginLeft: 'auto',
-                                }}
-                                >{ renderRecipeSource(recipe.meta.source) }</span>
-                        </p>
-                    </BruiCard>
-                </Hurk>
+                            >{ renderRecipeSource(recipe.meta.source) }</span>
+                    </p>
+                </BruiCard>
 
                 <FermentablesComposite
                     fermentables={ fermentables }
