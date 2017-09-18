@@ -12,24 +12,15 @@ import BruiButton from "../BruiButton";
 
 import GravityTargets from "./GravityTargets";
 import FermentationSchedule from "./FermentationSchedule";
+import BoilSchedule from "./BoilSchedule";
 
 const BrewerySettings = {
     batchSize: 19,
 };
 
+
+
 class Recipe extends Component {
-    renderBoilSchedele(boilTime) {
-        if (!boilTime) {
-            return;
-        }
-
-        return (
-            <BruiCard header="Boil schedule">
-                <p>Total boil time is { boilTime } minutes</p>
-            </BruiCard>
-        );
-    }
-
     renderMashSchedule(mashSchedule) {
         if (!mashSchedule) {
             return;
@@ -166,7 +157,9 @@ class Recipe extends Component {
                     schedule={recipe.fermentation_schedule}
                 />
 
-                { this.renderBoilSchedele.call(this, recipe.meta.boil_time) }
+                <BoilSchedule
+                    boilTime={recipe.meta.boil_time}
+                />
 
                 <div>
                 { renderLastBrewed(this.props.recipe.beer) }
