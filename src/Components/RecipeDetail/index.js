@@ -11,6 +11,7 @@ import BruiCard from "../BruiCard";
 import BruiButton from "../BruiButton";
 
 import GravityTargets from "./GravityTargets";
+import FermentationSchedule from "./FermentationSchedule";
 
 class Recipe extends Component {
     renderBoilSchedele(boilTime) {
@@ -25,41 +26,6 @@ class Recipe extends Component {
         );
     }
 
-    renderFermentationSchedule(fermentationSchedule) {
-        if (!fermentationSchedule) {
-            return;
-        }
-
-        function renderTemperatureRange(range) {
-            if (!range || !range[1]) {
-                if (typeof range !== 'object') {
-                    // is this a good way of handling it? Or be stricter?
-                    return `${ range }°C`;
-                }
-
-                return `${ range[0] }°C`;
-            }
-            return `${ range[0] }–${ range[1] }°C`;
-        }
-
-        function renderFermentationLength(length) {
-            if (!length) {
-                return;
-            }
-
-             return ` for ${ length } days`
-        }
-
-        return (
-            <BruiCard header="Fermentation schedule">
-                <p>
-                    { renderTemperatureRange(fermentationSchedule[0].temperature) }
-                    { renderFermentationLength(fermentationSchedule[0].time) }
-                </p>
-            </BruiCard>
-        )
-    }
-
     renderMashSchedule(mashSchedule) {
         if (!mashSchedule) {
             return;
@@ -72,10 +38,6 @@ class Recipe extends Component {
                 }) }
             </BruiCard>
         )
-    }
-
-    editRecipe = () => {
-        console.log("edit recipe");
     }
 
     render() {
@@ -196,7 +158,9 @@ class Recipe extends Component {
 
                 { this.renderMashSchedule.call(this, recipe.mash_schedule) }
 
-                { this.renderFermentationSchedule.call(this, recipe.fermentation_schedule) }
+                <FermentationSchedule
+                    schedule={recipe.fermentation_schedule}
+                />
 
                 { this.renderBoilSchedele.call(this, recipe.meta.boil_time) }
 
@@ -206,7 +170,7 @@ class Recipe extends Component {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
                     <div>
                         <BruiButton
-                            onClick={this.editRecipe}
+                            onClick={() => {}}
                         >Edit</BruiButton>
                     </div>
 
