@@ -13,28 +13,13 @@ import BruiButton from "../BruiButton";
 import GravityTargets from "./GravityTargets";
 import FermentationSchedule from "./FermentationSchedule";
 import BoilSchedule from "./BoilSchedule";
+import MashSchedule from "./MashSchedule";
 
 const BrewerySettings = {
     batchSize: 19,
 };
 
-
-
 class Recipe extends Component {
-    renderMashSchedule(mashSchedule) {
-        if (!mashSchedule) {
-            return;
-        }
-
-        return (
-            <BruiCard header="Mashing">
-                { mashSchedule.map((_step) => {
-                    return <p key={ _step.temperature + '' + _step.time }>{ _step.temperature }°C for { _step.time } minutes.</p>
-                }) }
-            </BruiCard>
-        )
-    }
-
     render() {
         const recipe = this.props.recipe;
 
@@ -72,11 +57,6 @@ class Recipe extends Component {
             ${''/* display: grid; */}
             ${''/* grid-template-columns: 30% 30% auto; */}
             grid-gap: 0px 8px;
-        `;
-
-        const Hurk = styled.div`
-            ${''/* grid-column-start: 1; */}
-            ${''/* grid-column-end: 3; */}
         `;
 
         function renderRecipeSource(string) {
@@ -145,13 +125,16 @@ class Recipe extends Component {
 
                 <HopsComposite
                     hops={ hops }
+                    batchSize={ BrewerySettings.batchSize }
                 />
 
                 <YeastsComposite
                     yeasts={ yeasts }
                 />
 
-                { this.renderMashSchedule.call(this, recipe.mash_schedule) }
+                <MashSchedule
+                    schedule={recipe.mash_schedule}
+                />
 
                 <FermentationSchedule
                     schedule={recipe.fermentation_schedule}
