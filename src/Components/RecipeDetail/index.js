@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
 import HopsComposite from '../Hops';
@@ -15,6 +14,8 @@ import BoilSchedule from "./BoilSchedule";
 import MashSchedule from "./MashSchedule";
 import RecipeSource from "./RecipeSource";
 
+import "./styles.css";
+
 const BrewerySettings = {
     batchSize: 19,
 };
@@ -27,14 +28,8 @@ class Recipe extends Component {
         const hops = recipe.hops;
         const yeasts = recipe.yeasts;
 
-        const RecipeGrid = styled.div`
-            padding: 8px;
-            margin: auto;
-            grid-gap: 0px 8px;
-        `;
-
         return (
-            <RecipeGrid>
+            <div className="RecipeDetail">
                 <BruiCard>
                     <p className="readable-text">This recipe makes { BrewerySettings.batchSize } liters of beer.</p>
 
@@ -89,7 +84,7 @@ class Recipe extends Component {
                         <BruiButton onClick={ this.props.onDelete }>Delete</BruiButton>
                     </div>
                 </div>
-            </RecipeGrid>
+            </div>
         )
     }
 }
