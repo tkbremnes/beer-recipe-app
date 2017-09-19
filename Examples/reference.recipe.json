@@ -1,0 +1,124 @@
+{
+    "meta": {
+        "comment": "This is a comment about the beer.",
+
+        "name": "Beer name",
+        "source": "https://location.url",
+
+        "boil_time": 75,
+
+        "original_gravity": 1.042,
+        "final_gravity": 1.008,
+
+        "style": {
+            "id": "18B",
+            "name": "American Pale Ale",
+            "aroma": "Moderate to strong hop aroma from American or New World hop varieties with a wide range of possible characteristics, including citrus, floral, pine, resinous, spicy, tropical fruit, stone fruit, berry, or melon. None of these specific characteristics are required, but hops should be apparent. Low to moderate maltiness supports the hop presentation, and may optionally show small amounts of specialty malt character (bready, toasty, biscuit, caramelly). Fruity esters vary from moderate to none. Dry hopping (if used) may add grassy notes, although this character should not be excessive.",
+            "appearance": "Pale golden to light amber. Moderately large white to off-white head with good retention. Generally quite clear, although dry-hopped versions may be slightly hazy.",
+            "flavor": "Moderate to high hop flavor, typically showing an American or New World hop character (citrus, floral, pine, resinous, spicy, tropical fruit, stone fruit, berry, melon, etc.). Low to moderate clean grainy-malt character supports the hop presentation, and may optionally show small amounts of specialty malt character (bready, toasty, biscuity). The balance is typically towards the late hops and bitterness, but the malt presence should be supportive, not distracting. Caramel flavors are often absent or fairly restrained (but are acceptable as long as they don't clash with the hops). Fruity yeast esters can be moderate to none, although many hop varieties are quite fruity. Moderate to high hop bitterness with a medium to dry finish. Hop flavor and bitterness often lingers into the finish, but the aftertaste should generally be clean and not harsh. Dry hopping (if used) may add grassy notes, although this character should not be excessive.",
+            "mouthfeel": "Medium-light to medium body. Moderate to high carbonation. Overall smooth finish without astringency and harshness.",
+            "impression": "A pale, refreshing and hoppy ale, yet with sufficient supporting malt to make the beer balanced and drinkable. The clean hop presence can reflect classic or modern American or New World hop varieties with a wide range of characteristics. An average-strength hop-forward pale American craft beer, generally balanced to be more accessible than modern American IPAs.",
+            "comments": "New hop varieties and usage methods continue to be developed. Judges should allow for characteristics of modern hops in this style, as well as classic varieties. Becoming more of an international craft style, with local adaptations appearing in many countries with an emerging craft beer market. Hopping styles can vary from the classic large bitterness addition, to more modern late hop-bursted examples; all variations are allowable.",
+            "history": "A modern American craft beer era adaptation of English pale ale, reflecting indigenous ingredients (hops, malt, yeast, and water). Prior to the explosion in popularity of IPAs, was traditionally the most well-known and popular of American craft beers.",
+            "ingredients": "Pale ale malt, typically North American two-row. American or New World hops, with a wide range of allowable characteristics. American or English ale yeast (neutral to lightly fruity). Specialty grains may add character and complexity, but generally make up a relatively small portion of the grist. Grains that add malt flavor and richness, light sweetness, and toasty or bready notes are often used (along with late hops) to differentiate brands.",
+            "comparison": "Typically lighter in color, cleaner in fermentation by-products, and having less caramel flavors than English counterparts. There can be some overlap in color between American pale ale and American amber ale. The American pale ale will generally be cleaner, have a less caramelly malt profile, less body, and often more finishing hops. Less bitterness in the balance and alcohol strength than an American IPA. More balanced and drinkable, and less intensely hop-focused and bitter than session-strength American IPAs (aka Session IPAs).",
+            "examples": "Ballast Point Grunion Pale Ale, Firestone Walker Pale 31, Great Lakes Burning River, Sierra Nevada Pale Ale, Stone Pale Ale, Tröegs Pale Ale",
+            "tags": "standard-strength, pale-color, top-fermented, north-america, craft-style, pale-ale-family, bitter, hoppy",
+            "stats": {
+                "ibu": [30, 50],
+                "original_gravity": [1.045, 1.06],
+                "final_gravity": [1.01, 1.015],
+                "srm": [5, 10],
+                "abv": [0.045, 0.062]
+            }
+        }
+    },
+
+    "fermentation_schedule": [
+        {
+            "label": "primary",
+            "temperature": [18, 20],
+            "time": 14
+        }
+    ],
+
+    "mash_schedule": [
+        {
+            "temperature": 65,
+            "time": 75
+        }
+    ],
+
+    "fermentables": [
+        {
+            "amount": 0.84,
+            "fermentable": {
+                "name": "Pilsner (2 Row) Ger",
+                "origin": "Germany",
+                "type": "GRAIN",
+                "color":  2,
+                "must_mash": true,
+                "potential_specific_gravity": 1.037,
+                "max_in_batch": 1
+            }
+        },
+        {
+            "amount": 0.16,
+            "fermentable": {
+                "name": "Maris Otter",
+                "origin": "United Kingdom",
+                "type": "GRAIN",
+                "color": 3,
+                "must_mash": true,
+                "potential_specific_gravity": 1.036,
+                "max_in_batch": 1
+            }
+        }
+    ],
+
+    "hops": [
+        {
+            "amount": 1.4736842105,
+            "time": 75,
+            "hop": {
+                "name": "Tettnang",
+                "origin": "Germany",
+                "type": "AROMA",
+                "form": "PELLET",
+                "alpha_acids": 0.038,
+                "beta_acids": 0.038,
+                "hop_stability_index": 0.4
+            }
+        },
+        {
+            "amount": 2.6315789474,
+            "time": 75,
+            "hop": {
+                "name": "Mt. Hood",
+                "origin": "US",
+                "type": "AROMA",
+                "form": "PELLET",
+                "alpha_acids": 0.06,
+                "beta_acids": 0.063,
+                "hop_stability_index": 0.4
+            }
+        }
+    ],
+
+    "yeasts": [
+        {
+            "yeast": {
+                "name": "German Kölsch Ale",
+                "product_id": "WLP029",
+                "laboratory": "White Labs",
+                "volume": "1.5",
+                "form": "LIQUID",
+                "type": "ALE",
+                "attenuation": [0.7, 0.78],
+                "flocculation": [1],
+                "temperature": [18, 20],
+                "tolerance": [1, 2]
+            }
+        }
+    ]
+}
