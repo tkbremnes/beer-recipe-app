@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import BeerStyle from '../../../bjcp/style.js';
+import BeerStyle from '../../../Store/BeerStyles';
 
 import "./style.css";
 
@@ -10,12 +10,14 @@ class BeerStyleSelect extends Component {
     }
 
     render() {
+        const bjcp = BeerStyle.get("bjcp");
+
         return (
             <select
                 onChange={ this._handleOnChange.bind(this) }
                 className="BeerStyleSelect"
             >
-                { BeerStyle.bjcp.getAll().map((_style) => {
+                { bjcp.getAll().map((_style) => {
                     const styleId = `bjcp:${_style.id}`;
                     return (
                         <option

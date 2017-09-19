@@ -13,7 +13,6 @@ import BruiUrlInput from '../BruiUrlInput';
 import RecipeCard from '../RecipeCard';
 
 import Utils from '../../Utils/Utils';
-import BeerStyle from '../../bjcp/style.js';
 
 import {
     importRecipe,
@@ -95,7 +94,7 @@ class RecipeImporter extends Component {
                 ebc = Math.round(calculatedMeta.color.ebc || 0);
             }
 
-            const style = recipe.meta.style && BeerStyle.getStyle(recipe.meta.style).name;
+            const style = recipe.meta.style;
 
             return (
                 <Page>

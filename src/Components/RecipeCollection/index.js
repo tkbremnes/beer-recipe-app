@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 
-import style from '../../bjcp/style.js';
-
 import RecipeDetail from '../RecipeDetail';
 import BruiCard from '../BruiCard';
 import BruiFloatingAddButton from '../BruiFloatingAddButton';
@@ -83,7 +81,7 @@ class RecipeCollection extends React.Component {
             return (
                 <div key={ Math.random() }>
                     <BruiListItemDivider>
-                      { _recipes.style && style.getStyle(_recipes.style) && style.getStyle(_recipes.style).name }
+                        { _recipes.style }
                     </BruiListItemDivider>
 
                     { _recipes.recipes.map((item) => {
@@ -98,7 +96,7 @@ class RecipeCollection extends React.Component {
         function sortRecipesOnStyle(recipeCollection) {
             const res = [];
             _.each(_.groupBy(recipeCollection, (_recipe) => {
-                return _recipe.meta.style;
+                return _recipe.meta.style.name;
             }), (_recipes, _style) => {
                 res.push({
                     style: _style,

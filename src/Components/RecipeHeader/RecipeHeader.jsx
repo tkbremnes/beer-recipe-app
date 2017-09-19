@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import beerStyleUtils from '../../bjcp/style.js';
-
 import "./style.css";
 
 class Stat extends Component {
@@ -70,7 +68,7 @@ class RecipeHeader extends Component {
                         { name }
                     </h1>
 
-                    <p className="style">{ beerStyle && beerStyleUtils.getStyle(beerStyle).name }</p>
+                    <p className="style">{ beerStyle.name }</p>
 
                   </div>
                 </div>

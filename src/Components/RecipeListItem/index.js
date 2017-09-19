@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import "./style.css";
 
-import style from '../../bjcp/style.js';
-
 import RecipeCard from "../RecipeCard";
 
 import Utils from '../../Utils/Utils';
@@ -33,7 +31,7 @@ function RecipeListItem ({recipe}) {
         <Link className="block" to={ recipeUrl }>
             <RecipeCard
                 name={ recipe.meta.name }
-                style={ recipe.meta.style && style.getStyle(recipe.meta.style).name }
+                beerStyle={recipe.meta.style && recipe.meta.style.name }
                 abv={ abv }
                 ibu={ ibu }
                 ebc={ ebc }

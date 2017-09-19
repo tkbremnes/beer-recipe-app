@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import RecipeCollection from '../Components/RecipeCollection/RecipeCollection.jsx';
+import RecipeCollection from '../Components/RecipeCollection';
 import RecipeImporter from '../Components/RecipeImporter';
 import RecipeCreator from '../Components/RecipeCreator';
 
