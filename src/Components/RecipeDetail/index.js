@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
-import HopsComposite from '../Hops';
+import Hops from './Hops';
 import YeastsComposite from '../YeastsComposite/index.jsx';
 import RecipeHeader from '../RecipeHeader/RecipeHeader.jsx';
 
@@ -52,7 +52,7 @@ class Recipe extends Component {
                     fermentables={ fermentables }
                 />
 
-                <HopsComposite
+                <Hops
                     hops={ hops }
                     batchSize={ BrewerySettings.batchSize }
                 />
