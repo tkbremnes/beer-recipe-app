@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
+import Header from './Header';
+
 import Fermentables from './Fermentables';
 import Hops from './Hops';
 import Yeasts from './Yeasts';
-import RecipeHeader from '../RecipeHeader/RecipeHeader.jsx';
 
 import BruiCard from "../BruiCard";
 import BruiButton from "../BruiButton";
@@ -14,12 +15,16 @@ import BoilSchedule from "./BoilSchedule";
 import MashSchedule from "./MashSchedule";
 import RecipeSource from "./RecipeSource";
 
-import Utils from "../../Utils/Utils.js";
+import Utils, { calculateAlcohol } from "../../Utils/Utils.js";
+import calculateColor from "../../Utils/Calculators/calculateColor"
+import calculateIbu from "../../Utils/Calculators/calculateIbu"
+import calculateBoilSize from "../../Utils/Calculators/calculateBoilSize"
 
 import "./styles.css";
 
 const BrewerySettings = {
     batchSize: 19,
+    evaporationRate: 4,
     brewhouseEfficiency: 0.75,
 };
 
@@ -34,10 +39,51 @@ class Recipe extends Component {
             fermentation_schedule,
         } = this.props.recipe;
 
-        const totalGrainWeight = Utils.getAmountOfMaltFromFermentables(fermentables, meta.original_gravity, BrewerySettings.batchSize, BrewerySettings.brewhouseEfficiency);
+        const totalGrainWeight = Utils.getAmountOfMaltFromFermentables(
+            fermentables,
+            meta.original_gravity,
+            BrewerySettings.batchSize,
+            BrewerySettings.brewhouseEfficiency
+        );
+
+        const color = calculateColor(
+            fermentables.map((fermentableAddition) => {
+                return {
+                    weight: fermentableAddition.amount * totalGrainWeight,
+                    color: fermentableAddition.fermentable.color
+                };
+            }), BrewerySettings.batchSize
+        );
+
+        const boilSize = calculateBoilSize(
+            BrewerySettings.batchSize,
+            meta.boil_time,
+            BrewerySettings.evaporationRate
+        );
+
+        const ibu = calculateIbu(
+            hops.map((hopAddition) => {
+                return {
+                    alpha_acids: hopAddition.hop.alpha_acids,
+                    time: hopAddition.time,
+                    weight: hopAddition.amount * BrewerySettings.batchSize,
+                }
+            }),
+            boilSize,
+            BrewerySettings.batchSize,
+            meta.original_gravity,
+        );
 
         return (
             <div className="RecipeDetail">
+                <Header
+                    name={meta.name}
+                    beerStyle={meta.style.name}
+                    abv={calculateAlcohol(meta.original_gravity, meta.final_gravity).abv}
+                    ibu={ibu}
+                    color={color}
+                />
+
                 <BruiCard>
                     <p className="readable-text">This recipe is meant for { BrewerySettings.batchSize } liters of beer. Assuming { BrewerySettings.brewhouseEfficiency * 100 }% efficiency.</p>
 

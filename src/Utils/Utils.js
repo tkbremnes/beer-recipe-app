@@ -125,6 +125,10 @@ function getPotentialSpecificGravity(amountOfGrain, volume, ratio, potentialYiel
     return ((upper/lower) + 1000) / 1000;
 }
 
+export function calculateAlcohol(originalGravity, finalgravity) {
+    return alcoholCalculator.getAlcohol(originalGravity, finalgravity);
+}
+
 const Utils = {
     calculateRecipeMeta,
     calculateAlcoholFromRecipe,

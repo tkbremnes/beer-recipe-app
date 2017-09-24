@@ -1,3 +1,6 @@
  .RecipeDetail {
     padding: 8px;
 }
+ .RecipeDetail .RecipeHeader {
+     margin: -8px -8px 8px;
+ }
