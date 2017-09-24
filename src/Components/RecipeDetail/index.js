@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
 import Hops from './Hops';
-import YeastsComposite from '../YeastsComposite/index.jsx';
+import Yeasts from './Yeasts';
 import RecipeHeader from '../RecipeHeader/RecipeHeader.jsx';
 
 import BruiCard from "../BruiCard";
@@ -57,7 +57,7 @@ class Recipe extends Component {
                     batchSize={ BrewerySettings.batchSize }
                 />
 
-                <YeastsComposite
+                <Yeasts
                     yeasts={ yeasts }
                 />
 
