@@ -179,64 +179,6 @@ function enrichRecipe(recipe) {
     };
 }
 
-export function fetchUserData() {
-    return (dispatch) => {
-        return Recipes.getAll().then((recipeCollection) => {
-            dispatch(receiveRecipeCollection(recipeCollection.map(enrichRecipe)));
-        });
-    };
-
-
-    // if (!db) {
-    //     return {};
-    // }
-    //
-    // // TODO: this should be race between internal and external db
-    // const dbRef = db.ref('/users/' + getUserId());
-    // return (dispatch) => {
-    //     return Recipes.getAll().then((recipeCollection) => {
-    //         dispatch(receiveRecipeCollection(recipeCollection));
-    //     });
-    //
-    //     return dbRef.once('value', (snapshot) => {
-    //
-    //         const beerUrls = snapshot.val().beersv2;
-    //         Promise.all(Object.keys(beerUrls).map((beerId) => {
-    //             const beerUrl = beerUrls[beerId];
-    //             return fetch(beerUrl).then(response => response.json()).then((beer) => {
-    //                 beer.id = beerId;
-    //                 return beer;
-    //             });
-    //         }))
-    //         // .then((res) => {
-    //         //     dispatch(receiveBeerCollection({beer: res}));
-    //         // });
-    //
-    //         // const beers = snapshot.val().beers;
-    //         // Promise.all(beers.map((beer) => {
-    //         //     const beerDbRef = db.ref(`/beers/${ beer }`);
-    //         //     return beerDbRef.once('value').then((snapshot) => {
-    //         //         return snapshot.val();
-    //         //     });
-    //         // })).then((res) => {
-    //         //     dispatch(receiveBeerCollection({beer: res}));
-    //         // });
-    //
-    //         dispatch(receiveUserData(snapshot.val()));
-    //
-    //         const recipeUrls = snapshot.val().recipes;
-    //         Promise.all(Object.keys(recipeUrls).map((recipeId) => {
-    //             const recipeUrl = recipeUrls[recipeId];
-    //             return fetch(recipeUrl).then(response => response.json()).then((recipe) => {
-    //                 recipe.id = recipeId;
-    //                 return recipe;
-    //             });
-    //         })).then((res) => {
-    //             dispatch(receiveRecipeCollection(res))
-    //         });
-    //     });
-    // }
-}
 export const RECEIVE_USER_DATA = 'receive_user_data';
 export function receiveUserData(userData) {
     return {
@@ -279,21 +221,6 @@ function receiveBeerCollection(beerCollection) {
 //     }
 // }
 
-export const RECEIVE_RECIPE_COLLECTION = 'receive_recipe_collection'
-function receiveRecipeCollection(_collection) {
-    const recipeCollection = _collection.map((_r) => {
-    //   _r["_meta"] = Utils.calculateRecipeMeta(_r);
-      return _r;
-    });
-
-    return {
-        type: RECEIVE_RECIPE_COLLECTION,
-        recipeCollection: {
-            recipes: recipeCollection
-        }
-    }
-}
-
 export const RECEIVE_BREWERY_SETTINGS = 'receive_brewery_settings'
 function receiveBrewerySettings(brewerySettings) {
     return {
@@ -317,50 +244,6 @@ export function fetchRecipeCollection(recipeCollectionArray) {
     //         console.error(err);
     //     });
     // }
-}
-
-export function deleteRecipeForId(recipeId) {
-    return (dispatch) => {
-      return Recipes.unset(recipeId).then(() => {
-        return Recipes.getAll().then((recipeCollection) => {
-            return dispatch(receiveRecipeCollection(recipeCollection));
-        });
-      });
-    }
-}
-window.deleteRecipeForId = (recipeId) => {
-    return Recipes.unset(recipeId);
-}
-
-export function updateRecipe(id, recipe) {
-    return (dispatch) => {
-
-        return Recipes.unset(id).then(() => {
-          const _recipe = _.clone(recipe);
-          const id = uuid.v4();
-          _recipe.id = id;
-
-          return Recipes.set(id, _recipe);
-        });
-
-        // return Recipes.set(id, _recipe);
-    }
-}
-
-export function importRecipe(recipe) {
-    return (dispatch) => {
-        const id = uuid.v4();
-        const _recipe = _.clone(recipe.recipe);
-        _recipe.id = id;
-
-        return Recipes.set(id, _recipe).then(() => {
-            return Recipes.getAll().then((recipeCollection) => {
-                dispatch(receiveRecipeCollection(recipeCollection));
-            });
-        }).then(() => {
-            return _recipe;
-        });
-    }
 }
 
 const brewhouseDb = idb.open('brewhouse', 1, upgradeDB => {

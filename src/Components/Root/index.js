@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import {
-    fetchUserData
-} from '../../Utils/Actions'
+    fetchRecipes,
+} from "../../Redux/Recipes/Actions";
 
 import Sidebar from '../Sidebar';
 import AppHeader from '../AppHeader';
@@ -16,7 +17,7 @@ import {
 
 class Root extends Component {
     componentWillMount() {
-        this.props.dispatch(fetchUserData());
+        this.props.dispatch(fetchRecipes());
         this.props.dispatch(setAppHeaderText("brau.beer"));
     }
 

@@ -8,7 +8,7 @@ import BruiFloatingAddButton from '../BruiFloatingAddButton';
 
 import {
     deleteRecipeForId
-} from '../../Utils/Actions';
+} from '../../Redux/Recipes/Actions';
 
 import {
     setAppHeaderText
