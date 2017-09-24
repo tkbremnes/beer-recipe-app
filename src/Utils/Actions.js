@@ -4,6 +4,9 @@ import uuid from 'uuid';
 import Utils from "./Utils";
 import Recipes from "../Store/Recipes";
 
+import FermentableAddition from "../Model/FermentableAddition";
+import Fermentable from "../Model/Fermentable";
+
 const idb = require("idb");
 window.idb = idb;
 
@@ -155,10 +158,31 @@ window.setStatus = (status) => {
 //     }
 // }
 
+function enrichRecipe(recipe) {
+    return {
+        meta: recipe.meta,
+        id: recipe.id,
+
+        fermentables: recipe.fermentables.map((addition) => {
+            const fermentable = new Fermentable(addition.fermentable);
+            return new FermentableAddition({
+                fermentable,
+                amount: addition.amount
+            });
+        }),
+        hops: recipe.hops,
+        yeasts: recipe.yeasts,
+
+        fermentation_schedule: recipe.fermentation_schedule,
+        mash_schedule: recipe.mash_schedule,
+
+    };
+}
+
 export function fetchUserData() {
     return (dispatch) => {
         return Recipes.getAll().then((recipeCollection) => {
-            dispatch(receiveRecipeCollection(recipeCollection));
+            dispatch(receiveRecipeCollection(recipeCollection.map(enrichRecipe)));
         });
     };
 

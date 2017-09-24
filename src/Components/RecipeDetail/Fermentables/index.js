@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import BruiCard from "../../BruiCard";
 
+import FermentableAddition from "../../../Model/FermentableAddition";
+
 export default class Fermentables extends Component {
     _renderHeader = () => {
         return (
@@ -84,7 +86,7 @@ export default class Fermentables extends Component {
     }
 
     static propTypes = {
-        fermentables: PropTypes.array.isRequired,
+        fermentables: PropTypes.arrayOf(PropTypes.instanceOf(FermentableAddition)),
         totalGrainWeight: PropTypes.number.isRequired,
     }
 }
