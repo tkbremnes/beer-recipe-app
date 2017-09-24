@@ -35,7 +35,7 @@ export default class Fermentables extends Component {
 
                     const printAmount = Math.round(amount * 100);
                     const weight = amount * totalWeight;
-                    const printWeight = weight;
+                    const printWeight = Math.round(weight);
 
                     return (
                         <tr key={key}>

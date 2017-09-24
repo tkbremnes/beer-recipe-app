@@ -1,5 +1,6 @@
 import alcoholCalculator from './abv_calculator.js';
 import tinseth from "tinseth";
+import assert from "assert";
 
 function calculateBitternessFromRecipe(recipe) {
     function calculateIbu(
@@ -120,6 +121,12 @@ function calculateGravityPointsByVolume(specificGravity, volume) {
 }
 
 function getAmountOfMalt(specificGravity, volume, ratio, potentialYield, brewhouseEfficiency) {
+    assert.ok(volume, "volume is required");
+    assert.ok(specificGravity, "specificGravity is required");
+    assert.ok(ratio, "ratio is required");
+    assert.ok(potentialYield, "potentialYield is required");
+    assert.ok(brewhouseEfficiency, "brewhouseEfficiency is required");
+
     const gravityPointsByVolume = calculateGravityPointsByVolume(specificGravity, volume);
 
     const SUGAR_GRAVITY_POINTS = 384;
@@ -128,6 +135,22 @@ function getAmountOfMalt(specificGravity, volume, ratio, potentialYield, brewhou
     const under = potentialYield * SUGAR_GRAVITY_POINTS * brewhouseEfficiency;
 
     return (upper/under) * 1000; // returns grams
+}
+
+function getAmountOfMaltFromFermentables(fermentables, specificGravity, batchVolume, brewhouseEfficiency) {
+    let result = 0;
+
+    fermentables.forEach((fermentableAddition) => {
+        result += getAmountOfMalt(
+            specificGravity,
+            batchVolume,
+            fermentableAddition.amount,
+            fermentableAddition.fermentable.potential_specific_gravity,
+            brewhouseEfficiency
+        );
+    });
+
+    return result;
 }
 
 // Ratio should be 1
@@ -144,7 +167,9 @@ const Utils = {
     calculateAlcoholFromRecipe,
     calculateAlcoholFromRecipeMeta,
     calculateBitternessFromRecipe,
-    calculateColorFromRecipe
+    calculateColorFromRecipe,
+
+    getAmountOfMaltFromFermentables
 }
 
 export default Utils;
