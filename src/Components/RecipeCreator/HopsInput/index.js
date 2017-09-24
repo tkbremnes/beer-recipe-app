@@ -6,7 +6,6 @@ import Hop from "../../../Model/Hop";
 import BruiCard from "../../BruiCard";
 import BruiButton from "../../BruiButton";
 
-
 class HopsInputHeader extends Component {
     render() {
         return (
@@ -23,6 +22,11 @@ class HopsInputHeader extends Component {
 }
 
 class HopsInput extends Component {
+    static propTypes = {
+        hops: PropTypes.array.isRequired,
+        onChange: PropTypes.func.isRequired,
+    }
+
     componentWillMount() {
         const hops = this.props.hops.slice(0);
 

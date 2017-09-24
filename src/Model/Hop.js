@@ -1,16 +1,16 @@
-const FORM = {
+export const FORM = {
     PELLETS: "PELLET",
     PLUG: "PLUG",
     LEAF: "LEAF",
 }
 
-const TYPE = {
+export const TYPE = {
     BITTERING: "BITTERING",
     AROMA: "AROMA",
     BOTH: "BOTH",
 }
 
-const USE = {
+export const USE = {
     BOIL: "BOIL",
     DRY_HOP: "DRY_HOP",
     MASH: "MASH",

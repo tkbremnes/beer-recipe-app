@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 
 import "./style.css";
 
@@ -49,7 +48,7 @@ class FermentablesInput extends Component {
             return _f.id === addition.id;
         });
 
-        addition.fermentable.color = field === "color" ? event.target.value : addition.fermentable.color,
+        addition.fermentable.color = field === "color" ? event.target.value : addition.fermentable.color;
         addition.fermentable.name = field === "name" ? event.target.value : addition.fermentable.name;
 
         const updatedAddition = {

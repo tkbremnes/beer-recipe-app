@@ -6,7 +6,6 @@ import "./style.css";
 
 import {
     getSettings,
-    setAppHeaderText
 } from '../../Actions';
 
 import Page from "../Page";
@@ -32,7 +31,10 @@ class User extends Component {
                         value={this.props.settings.displayName}
                     />
 
-                    <img src={ window.URL.createObjectURL(this.props.settings.breweryLogo) }/>
+                    <img
+                        alt="Brewery logo"
+                        src={ window.URL.createObjectURL(this.props.settings.breweryLogo)}
+                    />
                 </Card>
 
                 <Card header="Settings">

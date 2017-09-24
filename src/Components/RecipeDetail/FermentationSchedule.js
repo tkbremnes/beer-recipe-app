@@ -11,7 +11,7 @@ function FermentationScheduleStep({step}) {
 
         return `${range[0]}-${range[1]}`;
     }
-    console.log(step)
+
     return (
         <p>
             {rangeToString(step.temperature)}°C for { step.time } days

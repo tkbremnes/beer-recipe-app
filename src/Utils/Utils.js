@@ -132,7 +132,8 @@ const Utils = {
     calculateBitternessFromRecipe,
     calculateColorFromRecipe,
 
-    getAmountOfMaltFromFermentables
+    getAmountOfMaltFromFermentables,
+    getPotentialSpecificGravity,
 }
 
 export default Utils;

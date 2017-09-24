@@ -34,7 +34,7 @@ function getAmountOfMaltFromFermentables(fermentables, specificGravity, batchVol
     }, 0);
 }
 
-function ppgToPercentage(ppg) {
+export function ppgToPercentage(ppg) {
     const PPG_SUGAR = 46;
 
     return ppg/PPG_SUGAR;

@@ -194,14 +194,14 @@ class RecipeCreator extends Component {
                         </YeastsInput>
                     </Step>
 
-                    {/* <Step>
+                    <Step>
                         <MashSchedule
                             schedule={ recipe.mash_schedule }
                             onChange={ this.mashScheduleChanged.bind(this) }
                         ></MashSchedule>
-                    </Step> */}
+                    </Step>
 
-                    {/* <Step>
+                    <Step>
                         <BruiCard
                             header="Boiling"
                         >
@@ -217,14 +217,14 @@ class RecipeCreator extends Component {
                                 onChange={ this.metaChanged.bind(this, 'boil_time') }
                             />
                         </BruiCard>
-                    </Step> */}
+                    </Step>
 
-                    {/* <Step>
+                    <Step>
                         <FermentationSchedule
                             schedule={ recipe.fermentation_schedule }
                             onChange={ this.fermentationScheduleChanged.bind(this) }
                         ></FermentationSchedule>
-                    </Step> */}
+                    </Step>
 
                     <Step>
                         <BruiCard>

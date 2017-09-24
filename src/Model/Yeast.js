@@ -1,10 +1,10 @@
-const TYPE = {
+export const TYPE = {
     ALE: "ALE",
     LAGER: "LAGER",
     HYBRID: "HYBRID",
 };
 
-const FORM = {
+export const FORM = {
     LIQUID: "LIQUID",
     DRY: "DRY",
     SLURRY: "SLURRY",

@@ -95,12 +95,10 @@ class AdvancedGravityInput extends Component {
 
     render() {
         const {
-            value,
             displayValue,
         } = this.state;
 
         const {
-            onChange,
             label,
         } = this.props;
 

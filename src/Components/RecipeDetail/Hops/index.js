@@ -116,7 +116,7 @@ class Hops extends Component {
             <BruiCard header="Hops">
                 <table className="zebra">
                     { this._renderHeader() }
-                    { this._renderBody(this.props.hops, batchSize) }
+                    { this._renderBody(hops, batchSize) }
                 </table>
             </BruiCard>
         )
