@@ -58,7 +58,7 @@
                 "type": "GRAIN",
                 "color":  2,
                 "must_mash": true,
-                "potential_specific_gravity": 1.037,
+                "potential_yield": 0.804,
                 "max_in_batch": 1
             }
         },
@@ -70,7 +70,7 @@
                 "type": "GRAIN",
                 "color": 3,
                 "must_mash": true,
-                "potential_specific_gravity": 1.036,
+                "potential_yield": 0.782,
                 "max_in_batch": 1
             }
         }

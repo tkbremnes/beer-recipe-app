@@ -1,6 +1,7 @@
 import alcoholCalculator from './abv_calculator.js';
 import tinseth from "tinseth";
-import assert from "assert";
+
+import getAmountOfMaltFromFermentables from "./Calculators/getAmountOfMaltFromFermentables";
 
 function calculateBitternessFromRecipe(recipe) {
     function calculateIbu(
@@ -113,47 +114,6 @@ function calculateRecipeMeta(recipe) {
         color,
         bitterness
     };
-}
-
-function calculateGravityPointsByVolume(specificGravity, volume) {
-    const gravityPoints = (specificGravity * 1000) - 1000; // calculate kgs for floating point reasons
-    return gravityPoints * volume;
-}
-
-function getAmountOfMalt(specificGravity, volume, ratio, potentialYield, brewhouseEfficiency) {
-    assert.ok(volume, "volume is required");
-    assert.ok(specificGravity, "specificGravity is required");
-    assert.ok(ratio, "ratio is required");
-    assert.ok(potentialYield, "potentialYield is required");
-    assert.ok(brewhouseEfficiency, "brewhouseEfficiency is required");
-
-    const gravityPointsByVolume = calculateGravityPointsByVolume(specificGravity, volume);
-
-    const SUGAR_GRAVITY_POINTS = 384;
-
-    const upper = gravityPointsByVolume * ratio;
-    const under = potentialYield * SUGAR_GRAVITY_POINTS * brewhouseEfficiency;
-
-    return (upper / under) * 1000; // returns grams
-}
-
-function getAmountOfMaltFromFermentables(fermentables, specificGravity, batchVolume, brewhouseEfficiency) {
-    let result = 0;
-
-    fermentables.forEach((fermentableAddition) => {
-        const PPG_SUGAR = 46;
-        const potentialYield = (((fermentableAddition.fermentable.potential_specific_gravity) * 1000) - 1000) / PPG_SUGAR;
-
-        result += getAmountOfMalt(
-            specificGravity,
-            batchVolume,
-            fermentableAddition.amount,
-            potentialYield,
-            brewhouseEfficiency
-        );
-    });
-
-    return result;
 }
 
 // Ratio should be 1

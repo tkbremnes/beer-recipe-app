@@ -5,6 +5,7 @@ class Fermentable {
         name,
         type,
         potential_specific_gravity,
+        potential_yield,
         color,
         origin,
         supplier,
@@ -28,8 +29,8 @@ class Fermentable {
 
         this.type = type;
 
-        if (potential_specific_gravity) {
-            this.potential_specific_gravity = potential_specific_gravity;
+        if (potential_yield) {
+            this.potential_yield = potential_yield;
         }
 
         if (origin) {
