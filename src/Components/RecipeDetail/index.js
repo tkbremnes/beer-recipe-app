@@ -14,6 +14,8 @@ import BoilSchedule from "./BoilSchedule";
 import MashSchedule from "./MashSchedule";
 import RecipeSource from "./RecipeSource";
 
+import Utils from "../../Utils/Utils.js";
+
 import "./styles.css";
 
 const BrewerySettings = {
@@ -31,6 +33,8 @@ class Recipe extends Component {
             mash_schedule,
             fermentation_schedule,
         } = this.props.recipe;
+
+        const totalGrainWeight = Utils.getAmountOfMaltFromFermentables(fermentables, meta.original_gravity, BrewerySettings.batchSize, BrewerySettings.brewhouseEfficiency);
 
         return (
             <div className="RecipeDetail">
@@ -54,6 +58,7 @@ class Recipe extends Component {
 
                 <Fermentables
                     fermentables={fermentables}
+                    totalGrainWeight={totalGrainWeight}
                 />
 
                 <Hops

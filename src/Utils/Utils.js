@@ -134,18 +134,21 @@ function getAmountOfMalt(specificGravity, volume, ratio, potentialYield, brewhou
     const upper = gravityPointsByVolume * ratio;
     const under = potentialYield * SUGAR_GRAVITY_POINTS * brewhouseEfficiency;
 
-    return (upper/under) * 1000; // returns grams
+    return (upper / under) * 1000; // returns grams
 }
 
 function getAmountOfMaltFromFermentables(fermentables, specificGravity, batchVolume, brewhouseEfficiency) {
     let result = 0;
 
     fermentables.forEach((fermentableAddition) => {
+        const PPG_SUGAR = 46;
+        const potentialYield = (((fermentableAddition.fermentable.potential_specific_gravity) * 1000) - 1000) / PPG_SUGAR;
+
         result += getAmountOfMalt(
             specificGravity,
             batchVolume,
             fermentableAddition.amount,
-            fermentableAddition.fermentable.potential_specific_gravity,
+            potentialYield,
             brewhouseEfficiency
         );
     });
