@@ -8,9 +8,6 @@ import uuid from 'uuid';
 
 import clientState from "../Reducers/clientState.js";
 
-import Actions from './Actions';
-window.Actions = Actions;
-
 function uiState(state = {}, action, value) {
   switch(action.type) {
     default: {

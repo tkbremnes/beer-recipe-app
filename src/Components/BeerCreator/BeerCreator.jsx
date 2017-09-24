@@ -7,7 +7,7 @@ import {
     saveBeer,
     createNewBeerNote,
     fetchBrewerySettings,
-} from '../../Utils/Actions';
+} from '../../Redux/Beers/Actions';
 
 import RecipeSelectorModal from '../RecipeSelectorModal/RecipeSelectorModal.jsx';
 import RecipeItem from '../RecipeItem/RecipeItem.jsx';
