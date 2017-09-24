@@ -10,7 +10,8 @@ import "./Styles/table.css"
 import "./Styles/Theme.css";
 import "./Styles/Variables.css";
 
-import RecipeRoutes from "./Routes/RecipeRoutes";
+import RecipeRoutes from "./Routes/Recipes";
+import CalculatorRoutes from "./Routes/Calculators";
 
 import {
   BrowserRouter as Router,
@@ -20,7 +21,6 @@ import {
 import store from './Utils/Reducers';
 
 import Root from './Components/Root';
-import Calculators from "./Components/Calculators";
 import User from './Components/User';
 import About from './Components/About';
 
@@ -32,10 +32,10 @@ ReactDOM.render(
         <Route path="/" component={ Root } />
 
         <RecipeRoutes />
+        <CalculatorRoutes />
 
         <Route exact path="/user" component={ User } />
         <Route exact path="/about" component={ About } />
-        <Route exact path="/calculators" component={ Calculators } />
 
       </div>
     </Router>
