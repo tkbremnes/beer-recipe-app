@@ -18,38 +18,42 @@ import "./styles.css";
 
 const BrewerySettings = {
     batchSize: 19,
+    brewhouseEfficiency: 0.75,
 };
 
 class Recipe extends Component {
     render() {
-        const recipe = this.props.recipe;
-
-        const fermentables = recipe.fermentables;
-        const hops = recipe.hops;
-        const yeasts = recipe.yeasts;
+        const {
+            fermentables,
+            hops,
+            yeasts,
+            meta,
+            mash_schedule,
+            fermentation_schedule,
+        } = this.props.recipe;
 
         return (
             <div className="RecipeDetail">
                 <BruiCard>
-                    <p className="readable-text">This recipe makes { BrewerySettings.batchSize } liters of beer.</p>
+                    <p className="readable-text">This recipe is meant for { BrewerySettings.batchSize } liters of beer. Assuming { BrewerySettings.brewhouseEfficiency * 100 }% efficiency.</p>
 
-                    { recipe.meta.comment &&
-                        <p className="readable-text quote"> {recipe.meta.comment }</p>
+                    { meta.comment &&
+                        <p className="readable-text quote"> {meta.comment }</p>
                     }
 
                     <GravityTargets
-                        preboilGravity={recipe.meta.preboil_gravity}
-                        originalGravity={recipe.meta.original_gravity}
-                        finalGravity={recipe.meta.final_gravity}
+                        preboilGravity={meta.preboil_gravity}
+                        originalGravity={meta.original_gravity}
+                        finalGravity={meta.final_gravity}
                     />
 
                     <RecipeSource
-                        source={recipe.meta.source}
+                        source={meta.source}
                     />
                 </BruiCard>
 
                 <Fermentables
-                    fermentables={ fermentables }
+                    fermentables={fermentables}
                 />
 
                 <Hops
@@ -62,15 +66,15 @@ class Recipe extends Component {
                 />
 
                 <MashSchedule
-                    schedule={recipe.mash_schedule}
+                    schedule={mash_schedule}
                 />
 
                 <FermentationSchedule
-                    schedule={recipe.fermentation_schedule}
+                    schedule={fermentation_schedule}
                 />
 
                 <BoilSchedule
-                    boilTime={recipe.meta.boil_time}
+                    boilTime={meta.boil_time}
                 />
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
