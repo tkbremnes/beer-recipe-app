@@ -23,19 +23,15 @@ function getAmountOfMalt(specificGravity, volume, ratio, potentialYield, brewhou
 }
 
 function getAmountOfMaltFromFermentables(fermentables, specificGravity, batchVolume, brewhouseEfficiency) {
-    let result = 0;
-
-    fermentables.forEach((fermentableAddition) => {
-        result += getAmountOfMalt(
+    return fermentables.reduce((sum, fermentableAddition) => {
+        return sum += getAmountOfMalt(
             specificGravity,
             batchVolume,
             fermentableAddition.amount,
             fermentableAddition.fermentable.potential_yield,
             brewhouseEfficiency
         );
-    });
-
-    return result;
+    }, 0);
 }
 
 function ppgToPercentage(ppg) {
