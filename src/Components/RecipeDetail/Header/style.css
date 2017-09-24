@@ -3,10 +3,8 @@
     background-color: #f04e0d;
     background-color: HSL(37, 100%, 50%);
     background-color: var(--nord-9);
-    margin-bottom: 6px;
     border-top: 4px solid;
     border-bottom: 4px solid;
-    margin: '0';
 }
 
 .RecipeHeader .flavor-text {
