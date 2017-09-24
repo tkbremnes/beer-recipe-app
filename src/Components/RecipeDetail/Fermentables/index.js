@@ -20,19 +20,26 @@ export default class Fermentables extends Component {
     _renderBody = (fermentables, totalWeight) => {
         return (
             <tbody>
-                {fermentables.map((_fermentable) => {
-                    const weight = _fermentable.weight;
-                    const name = _fermentable.fermentable.name;
-                    const color = _fermentable.fermentable.color;
+                {fermentables.map((fermentableAddition, key) => {
+                    const {
+                        amount,
+                        fermentable,
+                    } = fermentableAddition;
 
-                    const percentageOfMaltBill = Math.round((_fermentable.weight / totalWeight) * 100);
-                    const key = `${weight}-${name}-${color}`
+                    const {
+                        name,
+                        color,
+                    } = fermentable;
+
+                    const printAmount = Math.round(amount * 100);
+                    const weight = amount * totalWeight;
+                    const printWeight = weight;
 
                     return (
                         <tr key={key}>
                             <td className="denom-cell weight">
                                 <p className="text-content">
-                                    {weight}<span className="denom">g</span>
+                                    {printWeight}<span className="denom">g</span>
                                 </p>
                             </td>
 
@@ -50,7 +57,7 @@ export default class Fermentables extends Component {
 
                             <td className="denom-cell total">
                                 <p className="text-content">
-                                    {percentageOfMaltBill}<span className="denom">%</span>
+                                    {printAmount}<span className="denom">%</span>
                                 </p>
                             </td>
                         </tr>
@@ -63,18 +70,14 @@ export default class Fermentables extends Component {
     render() {
         const {
             fermentables,
+            totalGrainWeight,
         } = this.props;
-
-        let totalWeight = 0;
-        this.props.fermentables.forEach((fermentable) => {
-            totalWeight += parseInt(fermentable.weight, 10);
-        });
 
         return (
             <BruiCard header="Fermentables">
                 <table className="zebra">
                     {this._renderHeader()}
-                    {this._renderBody(fermentables, totalWeight)}
+                    {this._renderBody(fermentables, totalGrainWeight)}
                 </table>
             </BruiCard>
         )
@@ -82,5 +85,6 @@ export default class Fermentables extends Component {
 
     static propTypes = {
         fermentables: PropTypes.array.isRequired,
+        totalGrainWeight: PropTypes.number.isRequired,
     }
 }
