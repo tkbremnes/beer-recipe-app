@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import FermentablesComposite from '../FermentablesComposite/index.jsx';
+import Fermentables from './Fermentables';
 import Hops from './Hops';
 import Yeasts from './Yeasts';
 import RecipeHeader from '../RecipeHeader/RecipeHeader.jsx';
@@ -48,7 +48,7 @@ class Recipe extends Component {
                     />
                 </BruiCard>
 
-                <FermentablesComposite
+                <Fermentables
                     fermentables={ fermentables }
                 />
 
