@@ -28,12 +28,10 @@ class FermentablesInput extends Component {
         const fermentables = props.fermentables.slice(0);
 
         if (fermentables.length === 0) {
-            fermentables.push(
-                new FermentableAddition({
-                    fermentable: new Fermentable({}),
-                    weight: "",
-                })
-            );
+            fermentables.push({
+                fermentable: {},
+                weight: "",
+            });
         }
 
         this.state = {
@@ -72,12 +70,10 @@ class FermentablesInput extends Component {
 
     addFermentable() {
         const fermentables = this.state.fermentables;
-        fermentables.push(
-            new FermentableAddition({
-                fermentable: new Fermentable({}),
-                weight: "",
-            })
-        );
+        fermentables.push({
+            fermentable: {},
+            weight: null,
+        });
 
         this.setState({
             fermentables
@@ -163,13 +159,11 @@ class FermentablesInput extends Component {
                                                 placeholder="5"
                                                 maxLength="3"
                                                 type="tel"
-                                                value={ _fermentable.fermentable.color.srm }
+                                                value={ _fermentable.fermentable.color }
                                                 onChange={ this.fermentableChange.bind(this, _fermentable, "color") }
                                             />
 
                                             <span className="denom">EBC</span>
-
-                                            <ebc-color-square color={_fermentable.fermentable.color}></ebc-color-square>
                                         </div>
                                     </td>
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
-import Hop from "../../../Model/Hop";
-
 import BruiCard from "../../BruiCard";
 import BruiButton from "../../BruiButton";
 
@@ -34,7 +32,7 @@ class HopsInput extends Component {
             hops.push({
                 weight: "",
                 time: 0,
-                hop: new Hop()
+                hop: {}
             });
         }
 
@@ -79,7 +77,7 @@ class HopsInput extends Component {
 
     addHop = () => {
         const hops = this.state.hops;
-        hops.push(new Hop());
+        hops.push({});
 
         this.setState({
             hops

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
-import Yeast from "../../../Model/Yeast";
-
 import Card from "../../BruiCard";
 import Button from "../../BruiButton";
 
@@ -45,7 +43,7 @@ class Yeasts extends Component {
 
         const yeasts = props.yeasts.slice(0);
         if (yeasts.length === 0) {
-            yeasts.push(new Yeast());
+            yeasts.push({});
         }
 
         this.state = {yeasts: yeasts};
@@ -65,7 +63,7 @@ class Yeasts extends Component {
 
     addYeast = () => {
         const yeasts = this.state.yeasts.slice(0);
-        yeasts.push(new Yeast());
+        yeasts.push({});
 
         this.setState({yeasts});
     }
