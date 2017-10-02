@@ -102,11 +102,13 @@ class FermentablesInput extends Component {
             fermentables
         } = this.state;
 
-        console.log(fermentables);
-
         const totalFermentableWeight = fermentables.reduce((a, b) => {
             return a + parseInt(b.weight || 0, 10);
         }, 0);
+
+        const totalColor = 0;
+        const totalGravity = 1;
+        const totalGravityPrint = totalGravity.toPrecision(4);
 
         return (
             <div>
@@ -183,7 +185,11 @@ class FermentablesInput extends Component {
                 </p>
 
                 <p className="FermentablesInput-totalWeight">
-                    Color: ?
+                    Color: { totalColor }
+                </p>
+
+                <p className="FermentablesInput-totalWeight">
+                    Total gravity: { totalGravityPrint }
                 </p>
             </BruiCard>
             </div>
