@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import "./style.css";
-
-import Utils from "../../Utils/Utils";
-import recipeValidator from '../../Utils/recipeValidator';
-
-import BruiWizard from "../BruiWizard";
-import Step from "../BruiWizard/Step";
+import Utils from "Utils/Utils";
+import recipeValidator from 'Utils/recipeValidator';
 
 import {
     saveRecipe,
@@ -15,9 +10,12 @@ import {
     setAppHeaderText
 } from '../../Actions';
 
-import BruiCard from '../BruiCard';
-
-import Loader from '../Loader/index.jsx';
+import BruiWizard from "Components/BruiWizard";
+import Step from "Components/BruiWizard/Step";
+import BruiCard from 'Components/BruiCard';
+import BruiVolumeInput from 'Components/BruiVolumeInput';
+import Button from 'Components/BruiButton';
+import Loader from 'Components/Loader/index.jsx';
 
 import FermentablesInput from "./FermentablesInput";
 import HopsInput from "./HopsInput";
@@ -28,10 +26,9 @@ import BruiTimeInput from '../BruiTimeInput';
 import Description from "./Description";
 import GravityInput from "./GravityInput";
 import MetaInput from "./MetaInput";
-import BruiVolumeInput from '../BruiVolumeInput';
-import Button from '../BruiButton';
-
 import Sidebar from "./Sidebar"
+
+import "./style.css";
 
 const emptyRecipe = {
     fermentables: [],
