@@ -1,4 +1,5 @@
 import idb from "idb";
+import uuid from "uuid";
 import _ from "underscore";
 import Fermentable from "../../../Model/Fermentable";
 
@@ -56,6 +57,10 @@ function set(id, item) {
     });
 }
 
+function add(item) {
+    return set(uuid.v4(), item);
+}
+
 function getAll() {
     return _getKeys().then((keys) => {
         return Promise.all(keys.map((key) => {
@@ -73,4 +78,5 @@ export default {
     set,
     unset,
     getAll,
+    add,
 }

@@ -7,6 +7,7 @@ import tinseth from 'tinseth';
 import uuid from 'uuid';
 
 import clientState from "../Reducers/clientState.js";
+import ingredients from "Redux/Ingredients/Reducer";
 
 function uiState(state = {}, action, value) {
   switch(action.type) {
@@ -515,7 +516,8 @@ const brewStore = combineReducers({
   beerStyles,
   settings,
 
-    clientState
+    clientState,
+    ingredients,
 });
 
 

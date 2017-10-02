@@ -40,4 +40,10 @@ export function ppgToPercentage(ppg) {
     return ppg/PPG_SUGAR;
 }
 
+export function percentageToPpg(percentage) {
+    const PPG_SUGAR = 46;
+
+    return percentage * PPG_SUGAR;
+}
+
 export default getAmountOfMaltFromFermentables;
