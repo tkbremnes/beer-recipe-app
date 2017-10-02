@@ -5,9 +5,6 @@ import "./style.css";
 import BruiCard from "../../BruiCard";
 import BruiButton from "../../BruiButton";
 
-import FermentableAddition from "../../../Model/FermentableAddition";
-import Fermentable from "../../../Model/Fermentable";
-
 function FermentablesInputHeader() {
     return (
         <thead className="input-row">
