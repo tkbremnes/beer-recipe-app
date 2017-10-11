@@ -28,9 +28,16 @@ class Ingredients extends Component {
 
         return (
             <Page>
-                { ingredients.fermentables.map((fermentable, key) =>
-                    <Fermentable fermentable={fermentable} key={key} />
-                )}
+                { ingredients.fermentables
+                    .sort((a, b) => {
+                        if (a.name === b.name) {
+                            return 0;
+                        }
+                        return a.name > b.name ? 1 : -1;
+                    })
+                    .map((fermentable, key) =>
+                        <Fermentable fermentable={fermentable} key={key} />
+                    )}
             </Page>
         );
     }
