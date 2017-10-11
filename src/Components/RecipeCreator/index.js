@@ -10,6 +10,10 @@ import {
     setAppHeaderText
 } from '../../Actions';
 
+import {
+    fetchIngredients,
+} from "Redux/Ingredients/Actions";
+
 import BruiWizard from "Components/BruiWizard";
 import Step from "Components/BruiWizard/Step";
 import BruiCard from 'Components/BruiCard';
@@ -55,6 +59,8 @@ class RecipeCreator extends Component {
     }
 
     componentWillMount() {
+        this.props.dispatch(fetchIngredients());
+
         if (this.props.match.params.recipeId) {
             console.log(`Editing: ${this.props.match.params.recipeId}`);
             return this.props.dispatch(fetchRecipe(this.props.match.params.recipeId));
@@ -152,6 +158,7 @@ class RecipeCreator extends Component {
                     <Step>
                         <FermentablesInput
                             fermentables={recipe.fermentables}
+                            fermentableIngredients={this.props.ingredients.fermentables}
                             onChange={this.fermentablesChanged.bind(this)}
                         ></FermentablesInput>
                     </Step>
@@ -261,6 +268,8 @@ class RecipeCreator extends Component {
                     }}
 
                     recipeValidity={ recipeValidity }
+
+                    recipe={recipe}
                 />
             </div>
         )
@@ -269,7 +278,8 @@ class RecipeCreator extends Component {
 
 function select(state) {
     return {
-        recipe: state.recipe
+        recipe: state.recipe,
+        ingredients: state.ingredients,
     }
 }
 

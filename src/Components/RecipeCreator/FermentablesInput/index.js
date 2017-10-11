@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 
 import "./style.css";
 
 import BruiCard from "../../BruiCard";
 import BruiButton from "../../BruiButton";
+import Select from "Components/BruiSelect";
 
 function FermentablesInputHeader() {
     return (
@@ -11,7 +13,6 @@ function FermentablesInputHeader() {
             <tr>
                 <td className="weight"><brui-label-text>Weight</brui-label-text></td>
                 <td className="name"><brui-label-text>Name</brui-label-text></td>
-                <td className="color input"><brui-label-text>Color</brui-label-text></td>
                 <td className="total"></td>
             </tr>
         </thead>
@@ -36,33 +37,8 @@ class FermentablesInput extends Component {
         };
     }
 
-    fermentableChange(addition, field, event) {
-        const fermentables = this.state.fermentables;
-
-        const position = fermentables.findIndex((_f) => {
-            return _f.id === addition.id;
-        });
-
-        addition.fermentable.color = field === "color" ? event.target.value : addition.fermentable.color;
-        addition.fermentable.name = field === "name" ? event.target.value : addition.fermentable.name;
-
-        const updatedAddition = {
-            weight: field === "weight" ? event.target.value : addition.weight,
-            fermentable: addition.fermentable,
-            id: addition.fermentable.id
-        };
-
-        fermentables[position] = updatedAddition;
-
-        this.setState({
-            fermentables
-        });
-
-        const exposedFermentables = fermentables.filter((_f) => {
-            return _f.fermentable.name && _f.weight;
-        });
-
-        this.props.onChange(exposedFermentables);
+    static propTypes = {
+        fermentables: PropTypes.array.isRequired,
     }
 
     addFermentable() {
@@ -97,12 +73,42 @@ class FermentablesInput extends Component {
         this.setState(newState);
     }
 
+    _emitOnChange(fermentables) {
+        const exposedFermentables = fermentables.filter((_f) => {
+            return _f.fermentable.name && _f.weight;
+        });
+
+        this.props.onChange(exposedFermentables);
+    }
+
+    _handleIngredientChange = (position, ingredient) => {
+        const updatedFermentables = this.state.fermentables.slice();
+
+        updatedFermentables[position].fermentable = ingredient;
+
+        this.setState(updatedFermentables);
+        this._emitOnChange(updatedFermentables);
+    }
+
+    _handleWeightChange = (position, event) => {
+        const weight = event.target.value;
+
+        const updatedFermentables = this.state.fermentables.slice();
+
+        updatedFermentables[position].weight = weight;
+
+        this.setState(updatedFermentables);
+        this._emitOnChange(updatedFermentables);
+    }
+
     render() {
         const {
-            fermentables
+            fermentables,
         } = this.state;
 
-        console.log(fermentables);
+        const {
+            fermentableIngredients,
+        } = this.props;
 
         const totalFermentableWeight = fermentables.reduce((a, b) => {
             return a + parseInt(b.weight || 0, 10);
@@ -113,18 +119,17 @@ class FermentablesInput extends Component {
             <BruiCard
                 header="Fermentables"
             >
-
                 <table className="FermentablesInput InputTable">
                     <FermentablesInputHeader />
 
                     <tbody
                         ref={(tableBody) => {this._tableBody = tableBody}}
                     >
-                        { fermentables.map((_fermentable) => {
+                        { fermentables.map((_fermentable, i) => {
                             const printRatio = this._getRatio(_fermentable.weight, totalFermentableWeight);
 
                             return (
-                                <tr className="input-row" key={_fermentable.id}>
+                                <tr className="input-row" key={i}>
                                     <td className="input-cell">
                                         <div className="input-wrapper">
                                             <input
@@ -133,7 +138,7 @@ class FermentablesInput extends Component {
                                                 type="tel"
                                                 maxLength="5"
                                                 value={ _fermentable.weight }
-                                                onChange={ this.fermentableChange.bind(this, _fermentable, "weight") }
+                                                onChange={ this._handleWeightChange.bind(null, i) }
                                             />
                                             <span className="denom">g</span>
                                         </div>
@@ -141,26 +146,11 @@ class FermentablesInput extends Component {
 
                                     <td className="input-cell">
                                         <div className="input-wrapper">
-                                            <input
-                                                placeholder="Maris Otter"
-                                                type="text"
-                                                value={ _fermentable.fermentable.name }
-                                                onChange={ this.fermentableChange.bind(this, _fermentable, "name") }
+                                            <Select
+                                                options={fermentableIngredients}
+                                                name={"name"}
+                                                onChange={this._handleIngredientChange.bind(null, i)}
                                             />
-                                        </div>
-                                    </td>
-
-                                    <td className="input-cell color-cell">
-                                        <div className="input-wrapper">
-                                            <input
-                                                placeholder="5"
-                                                maxLength="3"
-                                                type="tel"
-                                                value={ _fermentable.fermentable.color }
-                                                onChange={ this.fermentableChange.bind(this, _fermentable, "color") }
-                                            />
-
-                                            <span className="denom">EBC</span>
                                         </div>
                                     </td>
 
@@ -177,15 +167,16 @@ class FermentablesInput extends Component {
                     >Add fermentable</BruiButton>
                 </div>
             </BruiCard>
-            <BruiCard>
-                <p className="FermentablesInput-totalWeight">
-                     Total weight: { totalFermentableWeight } gram
-                </p>
 
-                <p className="FermentablesInput-totalWeight">
-                    Color: ?
-                </p>
-            </BruiCard>
+                <BruiCard>
+                    <p className="FermentablesInput-totalWeight">
+                        Total weight: { totalFermentableWeight } gram
+                    </p>
+
+                    <p className="FermentablesInput-totalWeight">
+                        Color: ?
+                    </p>
+                </BruiCard>
             </div>
         )
     }
