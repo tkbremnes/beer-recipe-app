@@ -96,10 +96,10 @@ class HopsInput extends Component {
                         <HopsInputHeader />
 
                         <tbody>
-                            { hops.map((_hop) => {
+                            { hops.map((_hop, i) => {
                                 const printAa = _hop.hop.alpha_acids ? Math.round(_hop.hop.alpha_acids * 100) : undefined;
                                 return (
-                                    <tr className="input-row" key={_hop.id}>
+                                    <tr className="input-row" key={i}>
                                         <td className="input-cell">
                                             <div className="input-wrapper">
                                                 <input

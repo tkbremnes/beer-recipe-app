@@ -138,8 +138,6 @@ class RecipeCreator extends Component {
         }
         const recipe = (Object.keys(this.props.recipe).length !== 0 && this.props.recipe) || this.state;
 
-        console.log(recipe);
-
         const recipeValidity = recipeValidator.checkRecipe(recipe);
         const calculatedMeta = Utils.calculateRecipeMeta(recipe);
         const alcohol = Utils.calculateAlcoholFromRecipeMeta({
@@ -236,10 +234,10 @@ class RecipeCreator extends Component {
                             {
                                 recipeValidator.isValid(recipe) ?
                                 <Button onClick={ this._saveRecipe.bind(this) }>Save</Button> :
-                                <Button disabled>Missing fields</Button>
+                                <Button onClick={() => {}} disabled>Missing fields</Button>
                             }
 
-                            <Button>Save draft</Button>
+                            <Button onClick={() => {}}>Save draft</Button>
 
                             <Button onClick={ this._saveRecipe.bind(this, true) }>Debug</Button>
                             {/* <Button onClick={ this._saveRecipe.bind(this) }>Force Save</Button> */}

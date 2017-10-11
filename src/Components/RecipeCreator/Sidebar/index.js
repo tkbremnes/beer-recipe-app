@@ -63,7 +63,7 @@ class Sidebar extends Component {
                     <p>Boil off rate: 4L/hour</p>
 
                     <div className="float-right">
-                        <Button>Change</Button>
+                        <Button onClick={()=>{}}>Change</Button>
                     </div>
                 </Card>
 

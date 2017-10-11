@@ -112,10 +112,12 @@ class AdvancedGravityInput extends Component {
 
                 <div className="button-wrapper">
                     <Button
+                        onClick={() => {}}
                         onDown={ this._handleIncrementStart }
                         onUp={ this._handleIncrementEnd }
                     >+</Button>
                     <Button
+                        onClick={() => { }}
                         onDown={ this._handleDecrementStart }
                         onUp={ this._handleDecrementEnd }
                     >-</Button>

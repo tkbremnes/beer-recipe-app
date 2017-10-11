@@ -84,12 +84,12 @@ class Yeasts extends Component {
                     </thead>
                     <tbody>
 
-                        { yeasts.map((_yeast) => {
+                        { yeasts.map((_yeast, i) => {
                             return (
                                 <YeastRow
                                     yeast={_yeast}
                                     onChange={this.handleYeastChange}
-                                    key={_yeast.id}
+                                    key={i}
                                 />
                             )
                         }) }
