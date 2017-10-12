@@ -13,6 +13,7 @@ function FermentablesInputHeader() {
             <tr>
                 <td className="weight"><brui-label-text>Weight</brui-label-text></td>
                 <td className="name"><brui-label-text>Name</brui-label-text></td>
+                <td className="color input"><brui-label-text>Color</brui-label-text></td>
                 <td className="total"></td>
             </tr>
         </thead>
@@ -147,10 +148,28 @@ class FermentablesInput extends Component {
                                     <td className="input-cell">
                                         <div className="input-wrapper">
                                             <Select
-                                                options={fermentableIngredients}
+                                                options={fermentableIngredients.sort((a, b) => {
+                                                    if (a.name === b.name) {
+                                                        return 0;
+                                                    }
+                                                    return a.name > b.name ? 1 : -1;
+                                                })}
                                                 name={"name"}
                                                 onChange={this._handleIngredientChange.bind(null, i)}
+                                                title="Select fermentable"
+                                                selectedOption={_fermentable.fermentable.name && _fermentable.fermentable}
                                             />
+                                        </div>
+                                    </td>
+
+                                    <td className="input-cell color-cell">
+                                        <div className="input-wrapper">
+                                            { _fermentable.fermentable.color !== undefined &&
+                                                <p className="non-editable">
+                                                    {_fermentable.fermentable.color}
+                                                    <span className="denom">°L</span>
+                                                </p>
+                                            }
                                         </div>
                                     </td>
 
