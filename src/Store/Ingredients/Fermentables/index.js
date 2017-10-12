@@ -5,6 +5,8 @@ import Fermentable from "../../../Model/Fermentable";
 
 const ingredientDb = idb.open('Ingredients', 1, upgradeDB => {
     upgradeDB.createObjectStore('Fermentables');
+    upgradeDB.createObjectStore('Hops');
+    upgradeDB.createObjectStore('Yeasts');
 });
 
 function _getKeys() {

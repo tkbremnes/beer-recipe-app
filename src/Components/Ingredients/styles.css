@@ -1,3 +1,8 @@
-.Ingredients {
+.IngredientsTable thead {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    font-weight: bold;
+}
 
+.IngredientsTable tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, .05);
 }

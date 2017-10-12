@@ -1,6 +1,7 @@
 import idb from "idb";
 import _ from "underscore";
-import Hop from "../../../Model/Hop";
+import uuid from "uuid";
+import Hop from "Model/Hop";
 
 const ingredientDb = idb.open('Ingredients', 1, upgradeDB => {
     upgradeDB.createObjectStore('Hops');
@@ -68,6 +69,9 @@ function getAll() {
     });
 }
 
+function add(item) {
+    return set(uuid.v4(), item);
+}
 export default {
     get,
     set,
