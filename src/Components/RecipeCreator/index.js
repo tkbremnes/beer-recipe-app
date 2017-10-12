@@ -10,6 +10,10 @@ import {
     setAppHeaderText
 } from '../../Actions';
 
+import {
+    fetchIngredients,
+} from "Redux/Ingredients/Actions";
+
 import BruiWizard from "Components/BruiWizard";
 import Step from "Components/BruiWizard/Step";
 import BruiCard from 'Components/BruiCard';
@@ -55,6 +59,8 @@ class RecipeCreator extends Component {
     }
 
     componentWillMount() {
+        this.props.dispatch(fetchIngredients());
+
         if (this.props.match.params.recipeId) {
             console.log(`Editing: ${this.props.match.params.recipeId}`);
             return this.props.dispatch(fetchRecipe(this.props.match.params.recipeId));
@@ -138,8 +144,6 @@ class RecipeCreator extends Component {
         }
         const recipe = (Object.keys(this.props.recipe).length !== 0 && this.props.recipe) || this.state;
 
-        console.log(recipe);
-
         const recipeValidity = recipeValidator.checkRecipe(recipe);
         const calculatedMeta = Utils.calculateRecipeMeta(recipe);
         const alcohol = Utils.calculateAlcoholFromRecipeMeta({
@@ -154,6 +158,7 @@ class RecipeCreator extends Component {
                     <Step>
                         <FermentablesInput
                             fermentables={recipe.fermentables}
+                            fermentableIngredients={this.props.ingredients.fermentables}
                             onChange={this.fermentablesChanged.bind(this)}
                         ></FermentablesInput>
                     </Step>
@@ -236,10 +241,10 @@ class RecipeCreator extends Component {
                             {
                                 recipeValidator.isValid(recipe) ?
                                 <Button onClick={ this._saveRecipe.bind(this) }>Save</Button> :
-                                <Button disabled>Missing fields</Button>
+                                <Button onClick={() => {}} disabled>Missing fields</Button>
                             }
 
-                            <Button>Save draft</Button>
+                            <Button onClick={() => {}}>Save draft</Button>
 
                             <Button onClick={ this._saveRecipe.bind(this, true) }>Debug</Button>
                             {/* <Button onClick={ this._saveRecipe.bind(this) }>Force Save</Button> */}
@@ -263,6 +268,8 @@ class RecipeCreator extends Component {
                     }}
 
                     recipeValidity={ recipeValidity }
+
+                    recipe={recipe}
                 />
             </div>
         )
@@ -271,7 +278,8 @@ class RecipeCreator extends Component {
 
 function select(state) {
     return {
-        recipe: state.recipe
+        recipe: state.recipe,
+        ingredients: state.ingredients,
     }
 }
 

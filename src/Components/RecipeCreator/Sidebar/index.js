@@ -18,7 +18,8 @@ class Sidebar extends Component {
             color,
             bitterness,
             styleGuidelines,
-            recipeValidity
+            recipeValidity,
+            recipe,
         } = this.props;
 
         const targetAbv = styleGuidelines.abv;
@@ -63,7 +64,7 @@ class Sidebar extends Component {
                     <p>Boil off rate: 4L/hour</p>
 
                     <div className="float-right">
-                        <Button>Change</Button>
+                        <Button onClick={()=>{}}>Change</Button>
                     </div>
                 </Card>
 
@@ -100,6 +101,12 @@ class Sidebar extends Component {
 
                         </tbody>
                     </table>
+                </Card>
+
+                <Card>
+                    <Button
+                        onClick={() => {console.log(recipe)}}
+                    >Print</Button>
                 </Card>
             </aside>
         )

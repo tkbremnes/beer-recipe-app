@@ -34,9 +34,9 @@ class MashSchedule extends React.Component {
             <BruiCard
                 header="Mashing"
             >
-                { schedule.map((_step) => {
+                { schedule.map((_step, i) => {
                     return (
-                        <BruiCard key={ _step.id }>
+                        <BruiCard key={i}>
                             <TemperatureInput
                                 label="Temperature"
                                 value={ _step.temperature }
@@ -53,8 +53,8 @@ class MashSchedule extends React.Component {
                 }) }
 
                 <div>
-                    <BruiButton disabled>Add note</BruiButton>
-                    <BruiButton disabled>Add mash step</BruiButton>
+                    <BruiButton onClick={()=>{}} disabled>Add note</BruiButton>
+                    <BruiButton onClick={()=>{}} disabled>Add mash step</BruiButton>
                 </div>
             </BruiCard>
         )

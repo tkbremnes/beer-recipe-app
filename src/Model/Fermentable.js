@@ -16,8 +16,14 @@ class Fermentable {
         recommended_mash,
         ibu_gal_per_lb,
     }) {
-        if (!(name && type && color)) {
-            throw new Error("Missing required field");
+        if (!name) {
+            throw new Error("Missing required field: name");
+        }
+        if (!type) {
+            throw new Error("Missing required field: type");
+        }
+        if (color === undefined) {
+            throw new Error(`Missing or invalid required field: color: ${color}`);
         }
 
         this.name = name;
@@ -29,7 +35,7 @@ class Fermentable {
 
         this.type = type;
 
-        if (potential_yield) {
+        if (potential_yield !== undefined) {
             this.potential_yield = potential_yield;
         }
 

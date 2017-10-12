@@ -55,8 +55,6 @@ class FermentationSchedule extends React.Component {
     render() {
         const schedule = this.state.schedule;
 
-        console.log(schedule)
-
         return (
             <BruiCard
                 header="Fermentation"
