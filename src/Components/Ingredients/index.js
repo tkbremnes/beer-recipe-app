@@ -25,6 +25,17 @@ class Ingredients extends Component {
             ingredients,
         } = this.props;
 
+        function formatPotentialYield(potentialYield) {
+            if (potentialYield === 0) {
+                return 0;
+            }
+            if (potentialYield === 1) {
+                return 100;
+            }
+
+            return (potentialYield * 100).toPrecision(2);
+        }
+
         return (
             <Page>
                 <Card header="Fermentables">
@@ -51,7 +62,7 @@ class Ingredients extends Component {
                                         <td>{fermentable.name}</td>
                                         <td>{fermentable.color}</td>
                                         <td>{fermentable.origin}</td>
-                                        <td>{fermentable.potential_yield}</td>
+                                        <td>{formatPotentialYield(fermentable.potential_yield)}%</td>
                                         <td>{fermentable.type}</td>
                                     </tr>
                                 )
