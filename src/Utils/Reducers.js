@@ -527,6 +527,6 @@ const createStoreWithMiddleware = applyMiddleware(
 
 let store = createStoreWithMiddleware(brewStore);
 
-window.newStore = store;
+window.__store = store;
 
 export default store;
