@@ -22,13 +22,13 @@ class Sidebar extends Component {
         } = this.props;
 
         const targetAbv = (beerStyle && beerStyle.stats.abv ) || {low: 0, high: 0};
-        const hitAbvTarget = alcohol.abv > targetAbv.low && alcohol.abv < targetAbv.high;
+        const hitAbvTarget = alcohol > targetAbv.low && alcohol < targetAbv.high;
 
         const targetColor = (beerStyle && beerStyle.stats.srm) ||  { low: 0, high: 0 };
         const hitColorTarget = color > targetColor.low && color < targetColor.high;
 
         const targetBitterness = (beerStyle && beerStyle.stats.ibu) || { low: 0, high: 0 };;
-        const hitBitternessTarget = false;
+        const hitBitternessTarget = bitterness > targetBitterness.low && bitterness < targetBitterness.high;
 
         function formatColor(color) {
             if (!color) {
@@ -45,20 +45,20 @@ class Sidebar extends Component {
                 </div>
 
                 <Card header="Alcohol">
-                    <p>{ formatAbv(alcohol.abv) }%</p>
+                    <p>{ formatAbv(alcohol) }%</p>
                     <p>Target: { formatAbv(targetAbv.low) }% - { formatAbv(targetAbv.high) }%</p>
 
                     { hitAbvTarget ? <p>Nailed it!</p> : <p>Nope</p> }
                 </Card>
 
                 <Card header="Color">
-                    <p>{ formatColor(color.srm) } SRM</p>
+                    <p>{ formatColor(color) } SRM</p>
                     <p>Target: {targetColor.low} - {targetColor.high}</p>
                     {hitColorTarget ? <p>Nailed it!</p> : <p>Nope</p>}
                 </Card>
 
                 <Card header="Bitterness">
-                    <p>{ bitterness.ibu } IBU</p>
+                    <p>{ bitterness } IBU</p>
                     <p>Target: {targetBitterness.low} - {targetBitterness.high}</p>
                     {hitBitternessTarget ? <p>Nailed it!</p> : <p>Nope</p>}
                 </Card>

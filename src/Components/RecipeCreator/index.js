@@ -252,18 +252,11 @@ class RecipeCreator extends Component {
                 </BruiWizard>
 
                 <Sidebar
-                    alcohol={{ abv: alcohol.abv, abw: alcohol.abw }}
-                    color={{ ebc: calculatedMeta.color.ebc, srm: calculatedMeta.color.srm }}
-                    bitterness={{ ibu: calculatedMeta.bitterness.ibu, ebu: calculatedMeta.bitterness.ebu }}
+                    alcohol={alcohol.abv}
+                    color={ calculatedMeta.color.srm }
+                    bitterness={calculatedMeta.bitterness.ibu}
                     name={ recipe.name }
                     beerStyle={ recipe.style }
-
-                    styleGuidelines={{
-                        abv: [0.04, 0.07],
-                        ebc: [2, 10],
-                        srm: [2, 10],
-                        ibu: [50, 80]
-                    }}
 
                     recipeValidity={ recipeValidity }
 
