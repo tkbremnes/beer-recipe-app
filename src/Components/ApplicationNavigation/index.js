@@ -25,6 +25,12 @@ function ApplicationNavigation({onLinkClicked}) {
 
             <SidebarDivider />
 
+            <Link className="link" to="/ingredients" onClick={onLinkClicked}>
+                Ingredients
+            </Link>
+
+            <SidebarDivider />
+
             <Link className="link" to="/calculators" onClick={onLinkClicked}>
                 Calculators
             </Link>
