@@ -17,13 +17,18 @@ class Sidebar extends Component {
             alcohol,
             color,
             bitterness,
-            styleGuidelines,
             recipeValidity,
             recipe,
         } = this.props;
 
-        const targetAbv = styleGuidelines.abv;
-        const hitAbvTarget = alcohol.abv > targetAbv[0] && alcohol.abv < targetAbv[1];
+        const targetAbv = (beerStyle && beerStyle.stats.abv ) || {low: 0, high: 0};
+        const hitAbvTarget = alcohol.abv > targetAbv.low && alcohol.abv < targetAbv.high;
+
+        const targetColor = (beerStyle && beerStyle.stats.srm) ||  { low: 0, high: 0 };
+        const hitColorTarget = color > targetColor.low && color < targetColor.high;
+
+        const targetBitterness = (beerStyle && beerStyle.stats.ibu) || { low: 0, high: 0 };;
+        const hitBitternessTarget = false;
 
         function formatColor(color) {
             if (!color) {
@@ -36,25 +41,26 @@ class Sidebar extends Component {
             <aside className="RecipeCreatorSidebar">
                 <div>
                     <p>{name}</p>
-                    <p>{beerStyle}</p>
+                    <p>{beerStyle && beerStyle.name}</p>
                 </div>
 
                 <Card header="Alcohol">
-                    <p>ABV: { formatAbv(alcohol.abv) }%</p>
-                    <p>Target: { formatAbv(targetAbv[0]) }% - { formatAbv(targetAbv[1]) }%</p>
+                    <p>{ formatAbv(alcohol.abv) }%</p>
+                    <p>Target: { formatAbv(targetAbv.low) }% - { formatAbv(targetAbv.high) }%</p>
 
                     { hitAbvTarget ? <p>Nailed it!</p> : <p>Nope</p> }
                 </Card>
 
                 <Card header="Color">
-                    <p>{ formatColor(color.ebc) } EBC [{styleGuidelines.ebc[0]} - {styleGuidelines.ebc[1]}]</p>
-                    <p>{ formatColor(color.srm) } SRM [{styleGuidelines.srm[0]} - {styleGuidelines.srm[1]}]</p>
-
+                    <p>{ formatColor(color.srm) } SRM</p>
+                    <p>Target: {targetColor.low} - {targetColor.high}</p>
+                    {hitColorTarget ? <p>Nailed it!</p> : <p>Nope</p>}
                 </Card>
 
                 <Card header="Bitterness">
                     <p>{ bitterness.ibu } IBU</p>
-                    <p>Target: {styleGuidelines.ibu[0]} - {styleGuidelines.ibu[1]}</p>
+                    <p>Target: {targetBitterness.low} - {targetBitterness.high}</p>
+                    {hitBitternessTarget ? <p>Nailed it!</p> : <p>Nope</p>}
                 </Card>
 
                 <Card header="Brewery settings">

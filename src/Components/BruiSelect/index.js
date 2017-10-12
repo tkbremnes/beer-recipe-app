@@ -40,7 +40,7 @@ class BruiSelect extends Component {
                 {
                     selectedOption ?
                         <p className="selected-option text">{selectedOption.name}</p> :
-                        <p className="placeholder text">{title}</p>
+                        <p className="placeholder text">{title ? title : "Select"}</p>
                 }
 
                 <div className="caret">

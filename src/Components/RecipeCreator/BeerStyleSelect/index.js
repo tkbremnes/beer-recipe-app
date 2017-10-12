@@ -2,33 +2,41 @@ import React, { Component } from "react";
 
 import BeerStyle from '../../../Store/BeerStyles';
 
+import Select from "Components/BruiSelect";
+
 import "./style.css";
 
 class BeerStyleSelect extends Component {
-    _handleOnChange(event) {
-        this.props.onChange(event.target.value)
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    _handleOnChange = (beerStyle) => {
+        this.props.onChange(beerStyle)
+        this.setState({
+            selectedOption: beerStyle,
+        });
     }
 
     render() {
         const bjcp = BeerStyle.get("bjcp");
 
+        const styles = bjcp.getAll();
         return (
-            <select
-                onChange={ this._handleOnChange.bind(this) }
+            <Select
+                onChange={ this._handleOnChange }
                 className="BeerStyleSelect"
-            >
-                { bjcp.getAll().map((_style) => {
-                    const styleId = `bjcp:${_style.id}`;
-                    return (
-                        <option
-                            key={ styleId }
-                            value={ styleId }
-                        >
-                            { _style.id }: { _style.name }
-                        </option>
-                    );
-                }) }
-            </select>
+                options={styles.sort((a, b) => {
+                    if (a.name === b.name) {
+                        return 0;
+                    }
+                    return a.name > b.name ? 1 : -1;
+                })}
+                title="Select beer style"
+                name="name"
+                selectedOption={this.state.selectedOption}
+            />
         )
     }
 }

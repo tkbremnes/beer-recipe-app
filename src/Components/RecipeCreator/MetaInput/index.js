@@ -20,12 +20,23 @@ class MetaInput extends Component {
         });
     }
 
-    _handleOnChange(type, value) {
+    _handleOnChange = (type, value) => {
         const updatedMeta = Object.assign({}, this.state.meta);
         updatedMeta[type] = value;
 
         this.setState({
             meta: updatedMeta
+        });
+
+        this.props.onChange(updatedMeta);
+    }
+
+    _handleBeerStyleChange = (beerStyle) => {
+        const updatedMeta = Object.assign({} , this.state.meta);
+        updatedMeta["style"]  = beerStyle;
+
+        this.setState({
+            meta: updatedMeta,
         });
 
         this.props.onChange(updatedMeta);
@@ -49,7 +60,7 @@ class MetaInput extends Component {
 
                 <BeerStyleSelect
                     value={ style }
-                    onChange={ this._handleOnChange.bind(this, "style") }
+                    onChange={ this._handleBeerStyleChange }
                 />
 
                 <VolumeInput

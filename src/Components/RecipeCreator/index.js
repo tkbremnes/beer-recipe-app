@@ -156,14 +156,6 @@ class RecipeCreator extends Component {
             <div className="RecipeCreator">
                 <BruiWizard>
                     <Step>
-                        <FermentablesInput
-                            fermentables={recipe.fermentables}
-                            fermentableIngredients={this.props.ingredients.fermentables}
-                            onChange={this.fermentablesChanged.bind(this)}
-                        ></FermentablesInput>
-                    </Step>
-
-                    <Step>
                         <MetaInput
                             onChange={ this._handleMetaChange.bind(this) }
                         />
@@ -178,7 +170,14 @@ class RecipeCreator extends Component {
                             bg={ alcohol.preboil_gravity }
                             onChange={ this.gravityChanged.bind(this) }
                         ></GravityInput>
+                    </Step>
 
+                    <Step>
+                        <FermentablesInput
+                            fermentables={recipe.fermentables}
+                            fermentableIngredients={this.props.ingredients.fermentables}
+                            onChange={this.fermentablesChanged.bind(this)}
+                        ></FermentablesInput>
                     </Step>
 
                     <Step>
@@ -231,7 +230,6 @@ class RecipeCreator extends Component {
                     <Step>
                         <BruiCard>
                             <p>{ recipe.name || '' }</p>
-                            <p>{ recipe.style || '' }</p>
                             <p>ibu={ calculatedMeta.bitterness.ibu || 0 }</p>
                             <p>abv={ calculatedMeta.alcohol.abv || 0 }</p>
                             <p>ebc={ calculatedMeta.color.ebc || 0 }</p>
