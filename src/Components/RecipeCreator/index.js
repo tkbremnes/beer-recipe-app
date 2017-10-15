@@ -78,18 +78,12 @@ class RecipeCreator extends Component {
         this.setState(recipe);
     }
 
-    _saveRecipe(isDebug) {
+    _saveRecipe() {
         let formattedRecipe;
         try {
             formattedRecipe = recipeValidator.normalize(this.state);
         }
         catch (e) {
-            console.error(e.message);
-            return;
-        }
-
-        if (isDebug) {
-            console.log(formattedRecipe);
             return;
         }
 
