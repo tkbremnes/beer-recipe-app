@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Utils from "Utils/Utils";
 import CalculateBitterness from "Utils/Calculators/calculateIbu";
 import CalculateBoilSize from "Utils/Calculators/calculateBoilSize";
+import CalculatePreboilGravity from "Utils/Calculators/calculatePreboilGravity";
 
 import recipeValidator from 'Utils/recipeValidator';
 
@@ -169,6 +170,12 @@ class RecipeCreator extends Component {
             recipe.original_gravity,
         ) : 0;
 
+        const calculatedPreboilGravity = CalculatePreboilGravity(
+            preboilVolume,
+            recipe.batch_volume,
+            recipe.original_gravity
+        );
+
         return (
             <div className="RecipeCreator">
                 <BruiWizard>
@@ -181,12 +188,18 @@ class RecipeCreator extends Component {
                             onChange={ this._handleDescriptionChange.bind(this) }
                         ></Description>
 
-                        <GravityInput
-                            og={ alcohol.original_gravity }
-                            fg={ alcohol.final_gravity }
-                            bg={ alcohol.preboil_gravity }
-                            onChange={ this.gravityChanged.bind(this) }
-                        ></GravityInput>
+
+                        <BruiCard
+                            header="Gravity targets"
+                        >
+                            <GravityInput
+                                og={ alcohol.original_gravity }
+                                fg={ alcohol.final_gravity }
+                                onChange={ this.gravityChanged.bind(this) }
+                            ></GravityInput>
+
+                            <p>Preboil gravity: { calculatedPreboilGravity }</p>
+                        </BruiCard>
                     </Step>
 
                     <Step>

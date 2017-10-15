@@ -7,6 +7,12 @@ import AdvancedGravityInput from "../../AdvancedGravityInput";
 import Card from '../../BruiCard';
 
 class GravityInput extends React.Component {
+    static propTypes = {
+        og: PropTypes.number,
+        fg: PropTypes.number,
+        onChange: PropTypes.func.isRequired,
+    }
+
     componentWillMount() {
         this.setState({
             gravity: {
@@ -27,42 +33,24 @@ class GravityInput extends React.Component {
     render() {
         return (
             <div className="GravityInput">
-                <Card
-                    header="Gravity targets"
-                >
-                    <Card>
-                        <AdvancedGravityInput
-                            label="Preboil"
-                            value={ this.state.gravity.preboil }
-                            onChange={ this._handleGravityChange.bind(this, "preboil") }
-                        />
-                    </Card>
+                <Card>
+                    <AdvancedGravityInput
+                        label="Original gravity"
+                        value={ this.state.gravity.original }
+                        onChange={ this._handleGravityChange.bind(this, 'original') }
+                    />
+                </Card>
 
-                    <Card>
-                        <AdvancedGravityInput
-                            label="Original gravity"
-                            value={ this.state.gravity.original }
-                            onChange={ this._handleGravityChange.bind(this, 'original') }
-                        />
-                    </Card>
-
-                    <Card>
-                        <AdvancedGravityInput
-                            label="Final gravity"
-                            value={ this.state.gravity.final }
-                            onChange={ this._handleGravityChange.bind(this, 'final') }
-                        />
-                    </Card>
+                <Card>
+                    <AdvancedGravityInput
+                        label="Final gravity"
+                        value={ this.state.gravity.final }
+                        onChange={ this._handleGravityChange.bind(this, 'final') }
+                    />
                 </Card>
             </div>
         )
     }
-}
-
-GravityInput.propTypes = {
-    og: PropTypes.number,
-    fg: PropTypes.number,
-    bg: PropTypes.number
 }
 
 export default GravityInput;
