@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
-import BruiCard from "../../BruiCard";
-import BruiButton from "../../BruiButton";
+import Card from "../../BruiCard";
+import Button from "../../BruiButton";
+import Select from "../../BruiSelect";
+import WeightInput from "../../BruiWeightInput";
+import TimeInput from "../../BruiTimeInput";
 
 class HopsInputHeader extends Component {
     render() {
@@ -20,151 +23,118 @@ class HopsInputHeader extends Component {
 }
 
 class HopsInput extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            hops: [],
+        }
+    }
+
     static propTypes = {
         hops: PropTypes.array.isRequired,
         onChange: PropTypes.func.isRequired,
     }
 
-    componentWillMount() {
-        const hops = this.props.hops.slice(0);
-
-        if (hops.length === 0) {
-            hops.push({
-                weight: "",
-                time: 0,
-                hop: {}
-            });
-        }
-
-        this.setState({
-            hops,
-        })
-    }
-
-    hopChange(hop, field, event) {
-        const hops = this.state.hops;
-
-        const position = hops.findIndex((_hop) => {
-            return _hop.id === hop.id;
-        });
-
-        const updatedHop = {
-            weight: field === "weight" ? event.target.value : hop.weight,
-            name: field === "name" ? event.target.value : hop.name,
-            alpha_acids: field === "alpha_acids" ? (event.target.value / 100) : hop.alpha_acids,
-            time: field === "time" ? event.target.value : hop.time,
-            id: hop.id
-        };
-
-        hops[position] = updatedHop;
-        this.setState({hops});
-
-        const exposedHops = hops.filter((_h) => {
-            return _h.weight && _h.name && _h.time;
-        }).map((_h) => {
-            return {
-                weight: _h.weight,
-                time: _h.time,
-                hop: {
-                    name: _h.name,
-                    alpha_acids: _h.alpha_acids,
-                },
-            }
-        });
-
-        this.props.onChange(exposedHops);
-    }
-
     addHop = () => {
         const hops = this.state.hops;
-        hops.push({});
+        hops.push({
+            weight: 0,
+            time: 0,
+            hop: null,
+        });
 
         this.setState({
             hops
         });
     }
 
+    _emitChange = () => {
+        const exposedHops = this.state.hops.filter((hopAddition) => {
+            return hopAddition.hop && hopAddition.weight > 0 && hopAddition.time > 0;
+        });
+        this.props.onChange(exposedHops);
+    }
+
+    _hopChanged = (index, hop) => {
+        const hops = this.state.hops.slice(0);
+        hops[index].hop = hop;
+
+        this.setState({
+            hops,
+        });
+
+        this._emitChange();
+    }
+
+    _weightChanged = (index, weight) => {
+        const hops = this.state.hops.slice(0);
+        hops[index].weight = weight;
+
+        this.setState({
+            hops,
+        });
+
+        this._emitChange();
+    }
+
+    _timeChanged = (index, time) => {
+        const hops = this.state.hops.slice(0);
+        hops[index].time = time;
+
+        this.setState({
+            hops,
+        });
+
+        this._emitChange();
+    }
+
     render() {
         const hops = this.state.hops;
 
+        const {
+            hopsIngredients,
+        } = this.props;
+
         return (
             <div>
-                <BruiCard
+                <Card
                     header="Hops"
                 >
-                    <table className="InputTable hop-input-table">
-                        <HopsInputHeader />
+                    { hops.map((hopAddition, index) => {
+                        return (
+                            <Card key={index}>
+                                <Select
+                                    options={hopsIngredients}
+                                    name="name"
+                                    onChange={this._hopChanged.bind(this, index)}
+                                    title="Select hop"
+                                    selectedOption={hopAddition.hop}
 
-                        <tbody>
-                            { hops.map((_hop, i) => {
-                                const printAa = _hop.hop.alpha_acids ? Math.round(_hop.hop.alpha_acids * 100) : undefined;
-                                return (
-                                    <tr className="input-row" key={i}>
-                                        <td className="input-cell">
-                                            <div className="input-wrapper">
-                                                <input
-                                                    placeholder="32"
-                                                    className="right-aligned-denom"
-                                                    type="tel"
-                                                    maxLength="5"
-                                                    value={ _hop.weight }
-                                                    onChange={ this.hopChange.bind(this, _hop, "weight") }
-                                                />
-                                                <span className="denom">g</span>
-                                            </div>
-                                        </td>
+                                />
 
-                                        <td className="input-cell">
-                                            <div className="input-wrapper">
-                                                <input
-                                                    placeholder="Fuggles"
-                                                    type="text"
-                                                    value={ _hop.hop.name }
-                                                    onChange={ this.hopChange.bind(this, _hop, "name") }
-                                                />
-                                            </div>
-                                        </td>
+                                <div>
+                                    {hopAddition.hop && <p>{(hopAddition.hop.alpha_acids * 100).toPrecision(2)}% Alpha acids</p>}
+                                </div>
 
-                                        <td className="input-cell aa-cell">
-                                            <div className="input-wrapper">
-                                                <input
-                                                    placeholder="5"
-                                                    maxLength="2"
-                                                    type="tel"
-                                                    className="right-aligned-denom"
-                                                    value={ printAa }
-                                                    onChange={this.hopChange.bind(this, _hop, "alpha_acids") }
-                                                />
-                                                <span className="denom">%</span>
-                                            </div>
-                                        </td>
+                                <WeightInput
+                                    onChange={this._weightChanged.bind(this, index)}
+                                />
 
-                                        <td className="input-cell time-cell">
-                                            <div className="input-wrapper">
-                                                <input
-                                                    placeholder="5"
-                                                    maxLength="3"
-                                                    className="right-aligned-denom"
-                                                    type="tel"
-                                                    value={ _hop.time }
-                                                    onChange={ this.hopChange.bind(this, _hop, "time") }
-                                                    />
-                                                <span className="denom">min</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            }) }
-                        </tbody>
-                    </table>
+                                <TimeInput
+                                    onChange={this._timeChanged.bind(this, index)}
+                                />
+                            </Card>
+                        );
+                    }) }
 
-                </BruiCard>
+                    <div>
+                        <Button
+                            onClick={ this.addHop }
+                        >Add hop</Button>
+                    </div>
+                </Card>
 
-                <div>
-                    <BruiButton
-                        onClick={ this.addHop }
-                    >Add hop</BruiButton>
-                </div>
 
             </div>
         )

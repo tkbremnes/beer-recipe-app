@@ -184,6 +184,7 @@ class RecipeCreator extends Component {
                         <HopsInput
                             hops={recipe.hops}
                             onChange={this.hopsChanged}
+                            hopsIngredients={this.props.ingredients.hops}
                         ></HopsInput>
                     </Step>
 
