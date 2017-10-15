@@ -3,3 +3,8 @@
     --main-button-text-color: #fff;
     --labelText: var(--nord-3);
 }
+
+input[type=tel],
+input[type=number] {
+    font-family: 'Droid Sans Mono', monospace;
+}
