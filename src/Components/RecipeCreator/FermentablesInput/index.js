@@ -46,7 +46,7 @@ class FermentablesInput extends Component {
         const fermentables = this.state.fermentables;
         fermentables.push({
             fermentable: {},
-            weight: null,
+            weight: "",
         });
 
         this.setState({

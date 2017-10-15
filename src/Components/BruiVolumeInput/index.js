@@ -4,6 +4,11 @@ import "./style.css";
 
 class BruiVolumeInput extends Component {
     _handleOnChange(event) {
+        if (event.target.value === "") {
+            this.props.onChange("");
+            return;
+        }
+
         this.props.onChange(parseFloat(event.target.value));
     }
 
