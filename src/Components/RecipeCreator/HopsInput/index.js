@@ -49,8 +49,8 @@ class HopsInput extends Component {
         });
     }
 
-    _emitChange = () => {
-        const exposedHops = this.state.hops.filter((hopAddition) => {
+    _emitChange = (hops) => {
+        const exposedHops = hops.filter((hopAddition) => {
             return hopAddition.hop && hopAddition.weight > 0 && hopAddition.time > 0;
         });
         this.props.onChange(exposedHops);
@@ -64,7 +64,7 @@ class HopsInput extends Component {
             hops,
         });
 
-        this._emitChange();
+        this._emitChange(hops);
     }
 
     _weightChanged = (index, weight) => {
@@ -75,7 +75,7 @@ class HopsInput extends Component {
             hops,
         });
 
-        this._emitChange();
+        this._emitChange(hops);
     }
 
     _timeChanged = (index, time) => {
@@ -86,7 +86,7 @@ class HopsInput extends Component {
             hops,
         });
 
-        this._emitChange();
+        this._emitChange(hops);
     }
 
     render() {
@@ -98,9 +98,6 @@ class HopsInput extends Component {
 
         return (
             <div>
-                <Card
-                    header="Hops"
-                >
                     { hops.map((hopAddition, index) => {
                         return (
                             <Card key={index}>
@@ -133,7 +130,6 @@ class HopsInput extends Component {
                             onClick={ this.addHop }
                         >Add hop</Button>
                     </div>
-                </Card>
 
 
             </div>
