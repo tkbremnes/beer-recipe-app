@@ -60,9 +60,9 @@ class BruiTimeInput extends Component {
             displayValue: inputValue
         });
 
-        this.props.onChange({
-            value: externalRepresentation,
-        });
+        this.props.onChange(
+            externalRepresentation,
+        );
     }
 
     render() {
