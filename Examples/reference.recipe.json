@@ -80,11 +80,11 @@
         {
             "amount": 1.4736842105,
             "time": 75,
+            "form": "PELLET",
             "hop": {
                 "name": "Tettnang",
                 "origin": "Germany",
                 "type": "AROMA",
-                "form": "PELLET",
                 "alpha_acids": 0.038,
                 "beta_acids": 0.038,
                 "hop_stability_index": 0.4
@@ -93,11 +93,11 @@
         {
             "amount": 2.6315789474,
             "time": 75,
+            "form": "PELLET",
             "hop": {
                 "name": "Mt. Hood",
                 "origin": "US",
                 "type": "AROMA",
-                "form": "PELLET",
                 "alpha_acids": 0.06,
                 "beta_acids": 0.063,
                 "hop_stability_index": 0.4

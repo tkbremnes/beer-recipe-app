@@ -78,18 +78,12 @@ class RecipeCreator extends Component {
         this.setState(recipe);
     }
 
-    _saveRecipe(isDebug) {
+    _saveRecipe() {
         let formattedRecipe;
         try {
             formattedRecipe = recipeValidator.normalize(this.state);
         }
         catch (e) {
-            console.error(e.message);
-            return;
-        }
-
-        if (isDebug) {
-            console.log(formattedRecipe);
             return;
         }
 
@@ -174,7 +168,7 @@ class RecipeCreator extends Component {
             preboilVolume,
             recipe.batch_volume,
             recipe.original_gravity
-        );
+        ) || 1;
 
         return (
             <div className="RecipeCreator">
@@ -198,7 +192,7 @@ class RecipeCreator extends Component {
                                 onChange={ this.gravityChanged.bind(this) }
                             ></GravityInput>
 
-                            <p>Preboil gravity: { calculatedPreboilGravity }</p>
+                            <p>Preboil gravity: { calculatedPreboilGravity.toPrecision(4) }</p>
                         </BruiCard>
                     </Step>
 

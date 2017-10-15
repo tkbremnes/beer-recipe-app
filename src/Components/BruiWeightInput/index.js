@@ -4,7 +4,7 @@ import "./style.css";
 
 class BruiWeightInput extends Component {
     _handleOnChange(event) {
-        this.props.onChange(event.target.value);
+        this.props.onChange(parseInt(event.target.value, 10));
     }
 
     render() {

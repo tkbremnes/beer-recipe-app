@@ -11,88 +11,42 @@ function isValid(recipe) {
 }
 
 function normalize(recipe) {
-    if (!this.isValid(recipe)) {
-        return null;
-    }
+    const totalFermentableWeight = recipe.fermentables.reduce((sum, fermentableAddition) => {
+        return sum + fermentableAddition.weight;
+    }, 0);
 
-    const normalisedRecipe = {
+    return {
+        fermentables: recipe.fermentables.map((fermentableAddition) => {
+            return {
+                amount: fermentableAddition.weight / totalFermentableWeight,
+                fermentable: fermentableAddition.fermentable,
+            }
+        }),
+        hops: recipe.hops.map((hopAddition) => {
+            return {
+                amount: hopAddition.weight / recipe.batch_volume,
+                time: hopAddition.time,
+                form: hopAddition.form,
+                hop: hopAddition.hop,
+            };
+        }),
+        yeasts: recipe.yeasts.map((yeastAddition) => {
+            return {
+                yeast: yeastAddition
+            };
+        }),
         meta: {
             name: recipe.name,
-            style: recipe.style,
             source: recipe.source,
-            batch_volume: recipe.batch_volume,
-
+            style: recipe.style,
             original_gravity: recipe.original_gravity,
-            preboil_gravity: recipe.preboil_gravity,
             final_gravity: recipe.final_gravity,
-
-            boil_time: recipe.boil_time || 60,
-            boil_volume: recipe.boil_volume,
-            description: recipe.description,
+            comment: recipe.description.body,
+            boil_time: recipe.boil_time || 60,
         },
-
-        fermentables: recipe.fermentables.filter((_f) => {
-            return _f.weight && _f.weight > 0;
-        }).map((_f) => {
-            return {
-                weight: _f.weight,
-                fermentable: {
-                    name: _f.name,
-                    color: _f.color,
-                }
-            }
-        }),
-
-        hops: recipe.hops.filter((_h) => {
-            return _h.weight && _h.weight > 0;
-        }).map((_h) => {
-            return {
-                weight: _h.weight,
-                time: _h.time,
-                hop: {
-                    name: _h.name,
-                    alpha_acids: _h.aa,
-                }
-            }
-        }),
-
-        yeasts: recipe.yeasts.map((_y) => {
-            return {
-                yeast: {
-                    name: _y.name
-                }
-            }
-        }),
+        mash_schedule: [],
+        fermentation_schedule: [],
     }
-
-    const filteredFermentationSchedule = recipe.fermentation_schedule.filter((_step) => {
-        return _step.time && _step.time > 0;
-    }).map((_step) => {
-        return {
-            label: _step.label,
-            time: _step.time,
-            temperature: _step.temperature
-        }
-    });
-
-    const filteredMashSchedule = recipe.mash_schedule.filter((_step) => {
-        return _step.temperature;
-    }).map((_step) => {
-        return {
-            label: _step.label,
-            time: _step.time,
-            temperature: _step.temperature
-        }
-    });
-
-    if (filteredMashSchedule.length > 0) {
-        normalisedRecipe.mash_schedule = filteredMashSchedule;
-    }
-    if (filteredFermentationSchedule.length > 0) {
-        normalisedRecipe.fermentation_schedule = filteredFermentationSchedule;
-    }
-
-    return normalisedRecipe;
 }
 
 function checkRecipe(recipe) {
@@ -136,5 +90,5 @@ function checkRecipe(recipe) {
 export default {
     checkRecipe,
     isValid,
-    normalize
+    normalize,
 }
