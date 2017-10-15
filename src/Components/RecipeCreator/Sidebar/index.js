@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import recipeUtils from "Utils/recipeValidator";
+
 import Card from "../../BruiCard";
 import Button from "../../BruiButton";
 
@@ -112,7 +114,10 @@ class Sidebar extends Component {
                 <Card>
                     <Button
                         onClick={() => {console.log(recipe)}}
-                    >Print</Button>
+                    >Print internal</Button>
+                    <Button
+                        onClick={() => {console.log(recipeUtils.normalize(recipe))}}
+                    >Print stored</Button>
                 </Card>
             </aside>
         )
