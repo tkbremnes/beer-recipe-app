@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Utils from "Utils/Utils";
+import CalculateBitterness from "Utils/Calculators/calculateIbu";
+import CalculateBoilSize from "Utils/Calculators/calculateBoilSize";
+
 import recipeValidator from 'Utils/recipeValidator';
 
 import {
@@ -152,6 +155,20 @@ class RecipeCreator extends Component {
             final_gravity: recipe.final_gravity,
         });
 
+        const preboilVolume = recipe.batch_volume ? CalculateBoilSize(recipe.batch_volume, recipe.boil_time, 4) : 0;
+        const bitterness = recipe.batch_volume ? CalculateBitterness(
+            recipe.hops.map(({ hop, time, weight }) => {
+                return {
+                    weight,
+                    time,
+                    alpha_acids: hop.alpha_acids,
+                };
+            }),
+            preboilVolume,
+            recipe.batch_volume,
+            recipe.original_gravity,
+        ) : 0;
+
         return (
             <div className="RecipeCreator">
                 <BruiWizard>
@@ -255,7 +272,7 @@ class RecipeCreator extends Component {
                 <Sidebar
                     alcohol={alcohol.abv}
                     color={ calculatedMeta.color.srm }
-                    bitterness={calculatedMeta.bitterness.ibu}
+                    bitterness={bitterness}
                     name={ recipe.name }
                     beerStyle={ recipe.style }
 

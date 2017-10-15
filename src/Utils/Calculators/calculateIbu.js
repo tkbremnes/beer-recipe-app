@@ -2,7 +2,7 @@ import assert from "assert";
 import tinseth from "tinseth";
 
 export default function calculateIbu(hops, boilSize, batchSize, postBoilGravity, maximumUtilizationValue) {
-    function calculateIbu(
+    function calculateIbuForAddition(
         postBoilGravity,
         boilSize,
         batchSize,
@@ -45,7 +45,7 @@ export default function calculateIbu(hops, boilSize, batchSize, postBoilGravity,
         }
 
         const isPellets = true;
-        const ibuFromAddition = calculateIbu(
+        const ibuFromAddition = calculateIbuForAddition(
             postBoilGravity,
             boilSize,
             batchSize,
