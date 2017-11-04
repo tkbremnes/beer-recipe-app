@@ -92,7 +92,7 @@ class FermentablesInput extends Component {
     }
 
     _handleWeightChange = (position, event) => {
-        const weight = event.target.value;
+        const weight = parseInt(event.target.value);
 
         const updatedFermentables = this.state.fermentables.slice();
 
