@@ -41,7 +41,7 @@ function normalize(recipe) {
             style: recipe.style,
             original_gravity: recipe.original_gravity,
             final_gravity: recipe.final_gravity,
-            comment: recipe.description.body,
+            comment: recipe.description && recipe.description.body,
             boil_time: recipe.boil_time || 60,
         },
         mash_schedule: [],
