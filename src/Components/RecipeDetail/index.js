@@ -167,7 +167,7 @@ class Recipe extends Component {
 
                 <Hops
                     hops={ hops }
-                    batchSize={ BrewerySettings.batchSize }
+                    batchSize={ batchSize }
                 />
 
                 <Yeasts
