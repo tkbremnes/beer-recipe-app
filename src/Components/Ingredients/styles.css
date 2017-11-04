@@ -6,3 +6,33 @@
 .IngredientsTable tbody tr:nth-of-type(even) {
     background-color: rgba(0, 0, 0, .05);
 }
+
+.IngredientsTable th {
+    text-align: left;
+    font-weight:
+}
+
+.IngredientsTable thead tr {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.IngredientsTable td,
+.IngredientsTable th {
+    padding: .25em 1em;
+}
+.IngredientsTable td:first-of-type,
+.IngredientsTable th:first-of-type {
+    padding-left: 0;
+}
+
+.IngredientsTable .number {
+    font-variant-numeric: lining-nums tabular-nums;
+    text-align: right;
+}
+
+.IngredientsTable .percent {
+    font-size: .8em;
+    line-height: 1.6;
+    margin-left: 1px;
+    color: rgba(0, 0, 0, .5);
+}
