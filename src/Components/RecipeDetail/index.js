@@ -55,6 +55,10 @@ class Recipe extends Component {
             brewhouseEfficiency: this.state.brewhouseEfficiency - 0.01,
         });
     }
+    editRecipe = () => {
+        const recipeId = this.props.recipe.id;
+        window.location.pathname = `recipes/${ recipeId }/edit`;
+    }
 
     render() {
         const {
@@ -186,10 +190,10 @@ class Recipe extends Component {
                     boilTime={meta.boil_time}
                 />
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
                     <div>
                         <BruiButton
-                            onClick={() => {}}
+                            onClick={this.editRecipe}
                         >Edit</BruiButton>
                     </div>
 
