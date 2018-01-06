@@ -8,6 +8,7 @@ import uuid from 'uuid';
 
 import clientState from "../Reducers/clientState.js";
 import ingredients from "Redux/Ingredients/Reducer";
+import inventory from "Redux/Inventory/Reducer";
 
 function uiState(state = {}, action, value) {
   switch(action.type) {
@@ -518,6 +519,7 @@ const brewStore = combineReducers({
 
     clientState,
     ingredients,
+    inventory,
 });
 
 

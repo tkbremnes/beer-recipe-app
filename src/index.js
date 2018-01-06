@@ -24,6 +24,7 @@ import Root from './Components/Root';
 import User from './Components/User';
 import About from './Components/About';
 import Ingredients from 'Components/Ingredients';
+import Inventory from 'Components/Inventory';
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(
@@ -38,6 +39,7 @@ ReactDOM.render(
         <Route exact path="/user" component={ User } />
         <Route exact path="/about" component={ About } />
         <Route exact path="/ingredients" component={ Ingredients } />
+        <Route exact path="/inventory" component={ Inventory } />
 
       </div>
     </Router>
