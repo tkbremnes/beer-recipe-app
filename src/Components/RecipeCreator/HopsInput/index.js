@@ -7,21 +7,6 @@ import Select from "../../BruiSelect";
 import WeightInput from "../../BruiWeightInput";
 import TimeInput from "../../BruiTimeInput";
 
-class HopsInputHeader extends Component {
-    render() {
-        return (
-            <thead className="input-row">
-                <tr>
-                    <td className="weight"><brui-label-text>Weight</brui-label-text></td>
-                    <td className="name"><brui-label-text>Name</brui-label-text></td>
-                    <td className="aa"><brui-label-text>AA</brui-label-text></td>
-                    <td className="time"><brui-label-text>Time</brui-label-text></td>
-                </tr>
-            </thead>
-        )
-    }
-}
-
 class HopsInput extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +19,23 @@ class HopsInput extends Component {
     static propTypes = {
         hops: PropTypes.array.isRequired,
         onChange: PropTypes.func.isRequired,
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps !== this.props.hops) {
+            const hops = nextProps.hops.slice(0);
+
+            if (hops.length === 0) {
+                hops.push({
+                    hop: {},
+                    weight: "",
+                });
+            }
+
+            this.setState({
+                hops,
+            });
+        }
     }
 
     addHop = () => {

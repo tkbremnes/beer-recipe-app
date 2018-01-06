@@ -6,7 +6,7 @@ import Fermentables from './Fermentables';
 import Hops from './Hops';
 import Yeasts from './Yeasts';
 
-import BruiCard from "../BruiCard";
+import Card from "../BruiCard";
 import BruiButton from "../BruiButton";
 
 import GravityTargets from "./GravityTargets";
@@ -23,12 +23,43 @@ import calculateBoilSize from "../../Utils/Calculators/calculateBoilSize"
 import "./styles.css";
 
 const BrewerySettings = {
-    batchSize: 19,
+    batchSize: 21,
     evaporationRate: 4,
-    brewhouseEfficiency: 0.75,
+    brewhouseEfficiency: 0.73,
 };
 
 class Recipe extends Component {
+    state = {
+        batchSize: BrewerySettings.batchSize,
+        brewhouseEfficiency: BrewerySettings.brewhouseEfficiency,
+    }
+
+    increaseBatchSize = () => {
+        this.setState({
+            batchSize: this.state.batchSize + 1,
+        });
+    }
+    decreaseBatchSize = () => {
+        this.setState({
+            batchSize: this.state.batchSize - 1,
+        });
+    }
+
+    increaseBrewhouseEfficiency = () => {
+        this.setState({
+            brewhouseEfficiency: this.state.brewhouseEfficiency + 0.01,
+        });
+    }
+    decreaseBrewhouseEfficiency = () => {
+        this.setState({
+            brewhouseEfficiency: this.state.brewhouseEfficiency - 0.01,
+        });
+    }
+    editRecipe = () => {
+        const recipeId = this.props.recipe.id;
+        window.location.pathname = `recipes/${ recipeId }/edit`;
+    }
+
     render() {
         const {
             fermentables,
@@ -39,11 +70,16 @@ class Recipe extends Component {
             fermentation_schedule,
         } = this.props.recipe;
 
+        const {
+            batchSize,
+            brewhouseEfficiency,
+        } = this.state;
+
         const totalGrainWeight = Utils.getAmountOfMaltFromFermentables(
             fermentables,
             meta.original_gravity,
-            BrewerySettings.batchSize,
-            BrewerySettings.brewhouseEfficiency
+            batchSize,
+            brewhouseEfficiency
         );
 
         const color = calculateColor(
@@ -84,9 +120,7 @@ class Recipe extends Component {
                     color={color}
                 />
 
-                <BruiCard>
-                    <p className="readable-text">This recipe is meant for { BrewerySettings.batchSize } liters of beer. Assuming { BrewerySettings.brewhouseEfficiency * 100 }% efficiency.</p>
-
+                <Card>
                     { meta.comment &&
                         <p className="readable-text quote"> {meta.comment }</p>
                     }
@@ -100,7 +134,35 @@ class Recipe extends Component {
                     <RecipeSource
                         source={meta.source}
                     />
-                </BruiCard>
+                </Card>
+
+                <Card header="Brewery settings">
+                    <Card>
+                        <p className="readable-text">
+                            Batch size: {batchSize} liters
+                        </p>
+
+                        <BruiButton onClick={this.increaseBatchSize}>
+                            +
+                        </BruiButton>
+                        <BruiButton onClick={this.decreaseBatchSize}>
+                            -
+                        </BruiButton>
+                    </Card>
+
+                    <Card>
+                        <p className="readable-text">
+                            Efficiency: {Math.floor(brewhouseEfficiency * 100)}%
+                        </p>
+
+                        <BruiButton onClick={this.increaseBrewhouseEfficiency}>
+                            +
+                        </BruiButton>
+                        <BruiButton onClick={this.decreaseBrewhouseEfficiency}>
+                            -
+                        </BruiButton>
+                    </Card>
+                </Card>
 
                 <Fermentables
                     fermentables={fermentables}
@@ -109,7 +171,7 @@ class Recipe extends Component {
 
                 <Hops
                     hops={ hops }
-                    batchSize={ BrewerySettings.batchSize }
+                    batchSize={ batchSize }
                 />
 
                 <Yeasts
@@ -128,10 +190,10 @@ class Recipe extends Component {
                     boilTime={meta.boil_time}
                 />
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
                     <div>
                         <BruiButton
-                            onClick={() => {}}
+                            onClick={this.editRecipe}
                         >Edit</BruiButton>
                     </div>
 

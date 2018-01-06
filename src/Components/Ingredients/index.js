@@ -42,11 +42,11 @@ class Ingredients extends Component {
                     <table className="IngredientsTable">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Color</td>
-                                <td>Origin</td>
-                                <td>Potential yield</td>
-                                <td>Type</td>
+                                <th>Name</th>
+                                <th className="number">Color</th>
+                                <th>Origin</th>
+                                <th className="number">Potential yield</th>
+                                <th>Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,9 +60,12 @@ class Ingredients extends Component {
                                 .map((fermentable, key) =>
                                     <tr key={key}>
                                         <td>{fermentable.name}</td>
-                                        <td>{fermentable.color}</td>
+                                        <td className="number">{fermentable.color}</td>
                                         <td>{fermentable.origin}</td>
-                                        <td>{formatPotentialYield(fermentable.potential_yield)}%</td>
+                                        <td className="number">
+                                            {formatPotentialYield(fermentable.potential_yield)}
+                                            <span className="percent">%</span>
+                                        </td>
                                         <td>{fermentable.type}</td>
                                     </tr>
                                 )
@@ -75,10 +78,10 @@ class Ingredients extends Component {
                     <table className="IngredientsTable">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Alpha Acids</td>
-                                <td>Origin</td>
-                                <td>Type</td>
+                                <th>Name</th>
+                                <th className="number">Alpha Acids</th>
+                                <th>Origin</th>
+                                <th>Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,7 +95,10 @@ class Ingredients extends Component {
                                 .map((hop, key) =>
                                     <tr key={key}>
                                         <td>{hop.name}</td>
-                                        <td>{(hop.alpha_acids*100).toPrecision(2)}%</td>
+                                        <td className="number">
+                                            {Math.floor(hop.alpha_acids*100)}
+                                            <span className="percent">%</span>
+                                        </td>
                                         <td>{hop.origin}</td>
                                         <td>{hop.type}</td>
                                     </tr>

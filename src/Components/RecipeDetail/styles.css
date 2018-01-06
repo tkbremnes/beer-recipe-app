@@ -1,6 +1,28 @@
  .RecipeDetail {
     padding: 8px;
 }
- .RecipeDetail .RecipeHeader {
-     margin: -8px -8px 8px;
- }
+
+.RecipeDetail .RecipeHeader {
+    margin: -8px -8px 8px;
+}
+
+.RecipeSource {
+    margin-top: 2em;
+    text-align: right;
+    opacity: .54;
+    font-style: italic;
+}
+.RecipeSource .header {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .54);
+}
+.RecipeSource .source {
+    text-decoration: underline;
+    white-space: nowrap;
+    max-width: 320px;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    margin-left: auto;
+}

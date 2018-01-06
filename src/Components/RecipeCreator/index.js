@@ -11,7 +11,6 @@ import recipeValidator from 'Utils/recipeValidator';
 import {
     saveRecipe,
     fetchRecipe,
-    setAppHeaderText
 } from '../../Actions';
 
 import {
@@ -23,7 +22,6 @@ import Step from "Components/BruiWizard/Step";
 import BruiCard from 'Components/BruiCard';
 import BruiVolumeInput from 'Components/BruiVolumeInput';
 import Button from 'Components/BruiButton';
-import Loader from 'Components/Loader/index.jsx';
 
 import FermentablesInput from "./FermentablesInput";
 import HopsInput from "./HopsInput";
@@ -44,12 +42,13 @@ const emptyRecipe = {
     yeasts: [],
     fermentation_schedule: [{time: '', temperature: ''}],
     mash_schedule: [{time: 60, temperature: 67}],
-    boil_time: 60,
-    boil_volume: "",
-    meta: {},
-    preboil_gravity: 1.000,
-    original_gravity: 1.000,
-    final_gravity: 1.000,
+    meta: {
+        boil_time: 60,
+        boil_volume: "",
+        preboil_gravity: 1.000,
+        original_gravity: 1.000,
+        final_gravity: 1.000,
+    },
 }
 
 class RecipeCreator extends Component {
@@ -66,16 +65,26 @@ class RecipeCreator extends Component {
         this.props.dispatch(fetchIngredients());
 
         if (this.props.match.params.recipeId) {
-            console.log(`Editing: ${this.props.match.params.recipeId}`);
             return this.props.dispatch(fetchRecipe(this.props.match.params.recipeId));
         }
 
-        const recipe = emptyRecipe;
-        const calculatedMeta = Utils.calculateRecipeMeta(recipe);
-        recipe._meta = calculatedMeta;
+        if (this.props.recipe.name) {
+            this.setState({
+                recipe: this.props.recipe,
+            });
+        }
+    }
 
-        this.props.dispatch(setAppHeaderText("New recipe"))
-        this.setState(recipe);
+    componentWillReceiveProps(newProps, oldProps) {
+        if (newProps.recipe !== oldProps.recipe) {
+            this.setState({
+                recipe: newProps.recipe,
+            });
+        }
+    }
+
+    state = {
+        recipe: emptyRecipe,
     }
 
     _saveRecipe() {
@@ -123,10 +132,7 @@ class RecipeCreator extends Component {
 
     _handleMetaChange(meta) {
         this.setState({
-            name: meta.name,
-            source: meta.source,
-            batch_volume: meta.batch_volume,
-            style: meta.style,
+            meta,
         });
     }
 
@@ -137,10 +143,14 @@ class RecipeCreator extends Component {
     }
 
     render() {
-        if ((this.props.recipe && Object.keys(this.props.recipe).length === 0) && !this.state) {
-            return <Loader></Loader>
-        }
-        const recipe = (Object.keys(this.props.recipe).length !== 0 && this.props.recipe) || this.state;
+        const recipe = this.state.recipe;
+
+        const {
+            fermentables,
+            hops,
+            yeasts,
+            // meta,
+        } = this.state.recipe;
 
         const recipeValidity = recipeValidator.checkRecipe(recipe);
         const calculatedMeta = Utils.calculateRecipeMeta(recipe);
@@ -198,7 +208,10 @@ class RecipeCreator extends Component {
 
                     <Step>
                         <FermentablesInput
-                            fermentables={recipe.fermentables}
+                            fermentables={fermentables.map((fermentable) => {
+                                // TODO: format this back to the thing it came from
+                                return fermentable;
+                            })}
                             fermentableIngredients={this.props.ingredients.fermentables}
                             onChange={this.fermentablesChanged.bind(this)}
                         ></FermentablesInput>
@@ -206,7 +219,10 @@ class RecipeCreator extends Component {
 
                     <Step>
                         <HopsInput
-                            hops={recipe.hops}
+                            hops={hops.map((hop) => {
+                                // TODO: format this back to the thing it came from
+                                return hop;
+                            })}
                             onChange={this.hopsChanged}
                             hopsIngredients={this.props.ingredients.hops}
                         ></HopsInput>
@@ -214,7 +230,7 @@ class RecipeCreator extends Component {
 
                     <Step>
                         <YeastsInput
-                            yeasts={ recipe.yeasts }
+                            yeasts={ yeasts }
                             onChange={ this.yeastsChanged.bind(this) }
                         >
                         </YeastsInput>

@@ -3,7 +3,6 @@ table {
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  /*font-family: "Noto Mono";*/
 }
 
 thead td {
@@ -20,7 +19,7 @@ thead td.time {
 }
 
 thead td.weight {
-  width: 7ch;
+  width: 8ch;
 }
 
 thead td.name {
@@ -60,7 +59,6 @@ table.zebra tr:nth-of-type(even) {
     /*background-color: HSL(33, 90%, 98%);*/
     background-color: var(--nord-6);
 }
-
 
 .InputTable {
     margin: 12px 0;
@@ -156,6 +154,10 @@ ebc-color-square {
 
 .hop-input-table thead td.weight {
   width: 7ch;
+}
+
+.denom-cell {
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .denom-cell .text-content {

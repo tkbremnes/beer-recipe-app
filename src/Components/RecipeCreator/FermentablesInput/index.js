@@ -21,25 +21,29 @@ function FermentablesInputHeader() {
 }
 
 class FermentablesInput extends Component {
-    constructor(props) {
-        super(props);
-
-        const fermentables = props.fermentables.slice(0);
-
-        if (fermentables.length === 0) {
-            fermentables.push({
-                fermentable: {},
-                weight: "",
-            });
-        }
-
-        this.state = {
-            fermentables,
-        };
-    }
-
     static propTypes = {
         fermentables: PropTypes.array.isRequired,
+    }
+
+    state = {
+        fermentables: [],
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps !== this.props.fermentables) {
+            const fermentables = nextProps.fermentables.slice(0);
+
+            if (fermentables.length === 0) {
+                fermentables.push({
+                    fermentable: {},
+                    weight: "",
+                });
+            }
+
+            this.setState({
+                fermentables,
+            });
+        }
     }
 
     addFermentable() {
@@ -92,7 +96,7 @@ class FermentablesInput extends Component {
     }
 
     _handleWeightChange = (position, event) => {
-        const weight = event.target.value;
+        const weight = parseInt(event.target.value, 10);
 
         const updatedFermentables = this.state.fermentables.slice();
 
