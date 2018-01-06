@@ -52,7 +52,7 @@ class Inventory extends Component {
                             {
                                 hops.map((hop, i) => {
                                     return (
-                                        <InventoryItem key={i} name={hop.name} amount={hop.amount} />
+                                        <InventoryItem key={i} name={hop.hop.name} amount={hop.amount} />
                                     )
                                 })
                             }
