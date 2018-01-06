@@ -73,6 +73,7 @@ function add(item) {
     return set(uuid.v4(), item);
 }
 export default {
+    add,
     get,
     set,
     unset,
