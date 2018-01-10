@@ -7,7 +7,8 @@
 
 .Calculator-linkList li {
     display: block;
-    height: 40px;
-    line-height: 40px;
-    text-decoration: underline;
+}
+
+.Calculator-linkList a {
+    color: inherit;
 }
