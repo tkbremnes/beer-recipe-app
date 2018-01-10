@@ -1,0 +1,13 @@
+.Calculator-linkList {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Calculator-linkList li {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: underline;
+}

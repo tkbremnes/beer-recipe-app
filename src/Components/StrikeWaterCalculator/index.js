@@ -7,6 +7,7 @@ import {
 } from "../../Utils/strike_water_calculator.js";
 
 
+import Page from "../Page";
 import Card from "../BruiCard";
 import BruiWeightInput from "../BruiWeightInput";
 import BruiTemperatureInput from "../BruiTemperatureInput";
@@ -64,45 +65,46 @@ class StrikeWaterCalculator extends Component {
 
     render() {
         const calculatedTemperature = this._calculate(this.state) || 0;
-        // const printCalculatedTemperature = calculatedTemperature.toPrecision(2);
 
         return (
-            <div>
-                <Card>
-                    <BruiWeightInput
-                        label="Grain weight"
-                        onChange={ this._handleGrainWeightChange.bind(this) }
-                        value={ this.state.grainWeight }
-                    />
+            <Page>
+                <Card header="Strike water calculator">
+                    <Card>
+                        <BruiWeightInput
+                            label="Grain weight"
+                            onChange={ this._handleGrainWeightChange.bind(this) }
+                            value={ this.state.grainWeight }
+                        />
 
-                    <BruiTemperatureInput
-                        label="First rest temperature"
-                        onChange={ this._handleFirstRestTemperatureChange.bind(this) }
-                        value={ this.state.firstRestTemperature }
-                    />
+                        <BruiTemperatureInput
+                            label="First rest temperature"
+                            onChange={ this._handleFirstRestTemperatureChange.bind(this) }
+                            value={ this.state.firstRestTemperature }
+                        />
 
-                    <BruiVolumeInput
-                        label="Strike water volume"
-                        onChange={ this._handleStrikeWaterVolumeChange.bind(this) }
-                        value={ this.state.strikeWaterVolume }
-                    />
+                        <BruiVolumeInput
+                            label="Strike water volume"
+                            onChange={ this._handleStrikeWaterVolumeChange.bind(this) }
+                            value={ this.state.strikeWaterVolume }
+                        />
 
-                    <BruiTemperatureInput
-                        label="Grain temperature"
-                        onChange={ this._handleGrainTemperatureChange.bind(this) }
-                        value={ this.state.grainTemperature }
-                    />
+                        <BruiTemperatureInput
+                            label="Grain temperature"
+                            onChange={ this._handleGrainTemperatureChange.bind(this) }
+                            value={ this.state.grainTemperature }
+                        />
 
-                    <BruiTemperatureInput
-                        label="Boiling temperature"
-                        onChange={ this._handleBoilingTemperatureChange.bind(this) }
-                        value={ this.state.boilingTemperature }
-                    />
+                        <BruiTemperatureInput
+                            label="Boiling temperature"
+                            onChange={ this._handleBoilingTemperatureChange.bind(this) }
+                            value={ this.state.boilingTemperature }
+                        />
+                    </Card>
+                    <Card header="Strike water temperature">
+                        <p>{ calculatedTemperature }°C</p>
+                    </Card>
                 </Card>
-                <Card header="Strike water temperature">
-                    <p>{ calculatedTemperature }°C</p>
-                </Card>
-            </div>
+            </Page>
         );
     }
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./style.css";
 
 import Card from "../BruiCard";
+import Page from "../Page";
 import AdvancedGravityInput from "../AdvancedGravityInput";
 
 import {
@@ -42,22 +43,24 @@ class AbvCalculator extends Component {
         const abv = this._formatAbv(calculateAbv(originalGravity, finalGravity));
 
         return (
-            <div>
-                <Card header="Original gravity">
-                    <AdvancedGravityInput
-                        value={ originalGravity }
-                        onChange={ this._handleOriginalGravityChange.bind(this) }
-                    />
-                </Card>
+            <Page>
+                <Card header="Alcohol calculator">
+                    <Card header="Original gravity">
+                        <AdvancedGravityInput
+                            value={ originalGravity }
+                            onChange={ this._handleOriginalGravityChange.bind(this) }
+                        />
+                    </Card>
 
-                <Card header="Final gravity">
-                    <AdvancedGravityInput
-                        value={ finalGravity }
-                        onChange={ this._handleFinalGravityChange.bind(this) }
-                    />
+                    <Card header="Final gravity">
+                        <AdvancedGravityInput
+                            value={ finalGravity }
+                            onChange={ this._handleFinalGravityChange.bind(this) }
+                        />
+                    </Card>
+                    <p>Abv: { abv }%</p>
                 </Card>
-                <p>Abv: { abv }%</p>
-            </div>
+            </Page>
         )
     }
 }

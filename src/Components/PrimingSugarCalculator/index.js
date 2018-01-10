@@ -7,6 +7,7 @@ import {
 } from "../../Utils/priming_sugar_calculator.js";
 
 
+import Page from "../Page";
 import Card from "../BruiCard";
 import BruiVolumeInput from "../BruiVolumeInput";
 import BruiTemperatureInput from "../BruiTemperatureInput";
@@ -50,31 +51,33 @@ class PrimingSugarCalculator extends Component {
     render() {
         const calculatedValue = this._calculate(this.state);
         return (
-            <div>
-                <Card>
-                    <BruiVolumeInput
-                        label="Package volume"
-                        value={ this.state.packageVolume }
-                        onChange={ this._handlePackageVolumeChange.bind(this) }
-                    />
+            <Page>
+                <Card header="Priming sugar calculator">
+                    <Card>
+                        <BruiVolumeInput
+                            label="Package volume"
+                            value={ this.state.packageVolume }
+                            onChange={ this._handlePackageVolumeChange.bind(this) }
+                        />
 
-                    <BruiVolumeInput
-                        label="CO² volume"
-                        value={ this.state.co2Volume }
-                        onChange={ this._handleCo2VolumeChange.bind(this) }
-                    />
+                        <BruiVolumeInput
+                            label="CO² volume"
+                            value={ this.state.co2Volume }
+                            onChange={ this._handleCo2VolumeChange.bind(this) }
+                        />
 
-                    <BruiTemperatureInput
-                        label="Temperature of beverage"
-                        value={ this.state.beverageTemperature }
-                        onChange={ this._handleTemperatureChange.bind(this) }
-                    />
+                        <BruiTemperatureInput
+                            label="Temperature of beverage"
+                            value={ this.state.beverageTemperature }
+                            onChange={ this._handleTemperatureChange.bind(this) }
+                        />
+                    </Card>
+
+                    <Card header="Priming sugar">
+                        { calculatedValue } grams table sugar
+                    </Card>
                 </Card>
-
-                <Card header="Priming sugar">
-                    { calculatedValue } grams table sugar
-                </Card>
-            </div>
+            </Page>
         )
     }
 }
