@@ -14,13 +14,16 @@ export function calculateApparentAttenuation(originalGravity, measuredGravity) {
 }
 
 export function calculateCalories(originalGravity, measuredGravity) {
-    const OE = gravityToPlato(originalGravity);
-    const AE = gravityToPlato(measuredGravity);
-    const RE = .1808 * OE + .8192 * AE;
+    const originalExtract = gravityToPlato(originalGravity);
+    const apparentExtract = gravityToPlato(measuredGravity);
+    const realExtract = .1808 * originalExtract + .8192 * apparentExtract;
 
     const abw = calculateAbw(originalGravity, measuredGravity) * 100;
 
-    return ((6.9 * abw + 4.0 * (RE - .1)) * 3.55 * measuredGravity);
+    const caloriesPer12OzBottle = ((6.9 * abw + 4.0 * (realExtract - .1)) * 3.55 * measuredGravity);
+    const res = (caloriesPer12OzBottle / 12) / 0.0295735296875;
+
+    return res;
 }
 
 export function calculateAbv(originalGravity, measuredGravity) {

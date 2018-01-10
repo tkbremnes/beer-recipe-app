@@ -44,7 +44,7 @@ class AbvCalculator extends Component {
         const abv = this._formatAbv(calculateAbv(originalGravity, finalGravity));
         const abw = this._formatAbv(calculateAbw(originalGravity, finalGravity));
         const attenuation = this._formatAbv(calculateApparentAttenuation(originalGravity, finalGravity));
-        const calories = calculateCalories(originalGravity, finalGravity);
+        const calories = Math.round(calculateCalories(originalGravity, finalGravity));
 
         return (
             <Page>
@@ -68,7 +68,7 @@ class AbvCalculator extends Component {
                     <p>ABV: { abv }%</p>
                     <p>ABW: { abw }%</p>
                     <p>Attenuation: { attenuation }%</p>
-                    <p>Calories: { calories }%</p>
+                    <p>Calories: { calories }kcal per liter</p>
                 </Card>
             </Page>
         )
