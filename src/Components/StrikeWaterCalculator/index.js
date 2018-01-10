@@ -14,14 +14,12 @@ import BruiTemperatureInput from "../BruiTemperatureInput";
 import BruiVolumeInput from "../BruiVolumeInput";
 
 class StrikeWaterCalculator extends Component {
-    componentWillMount() {
-        this.setState({
-            grainWeight: undefined,
-            firstRestTemperature: undefined,
-            strikeWaterVolume: undefined,
-            grainTemperature: undefined,
-            boilingTemperature: 100,
-        });
+    state = {
+        grainWeight: undefined,
+        firstRestTemperature: undefined,
+        strikeWaterVolume: undefined,
+        grainTemperature: undefined,
+        boilingTemperature: 100,
     }
 
     _handleGrainWeightChange(value) {

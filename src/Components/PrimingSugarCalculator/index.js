@@ -13,12 +13,10 @@ import BruiVolumeInput from "../BruiVolumeInput";
 import BruiTemperatureInput from "../BruiTemperatureInput";
 
 class PrimingSugarCalculator extends Component {
-    componentWillMount() {
-        this.setState({
-            packageVolume: undefined,
-            co2Volume: undefined,
-            beverageTemperature: undefined
-        });
+    state = {
+        packageVolume: undefined,
+        co2Volume: undefined,
+        beverageTemperature: undefined
     }
 
     _calculate() {
@@ -46,7 +44,6 @@ class PrimingSugarCalculator extends Component {
             beverageTemperature: value
         });
     }
-
 
     render() {
         const calculatedValue = Math.round(this._calculate(this.state));

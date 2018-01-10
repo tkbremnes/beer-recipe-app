@@ -11,11 +11,9 @@ import {
 } from "../../Utils/abv_calculator";
 
 class AbvCalculator extends Component {
-    componentWillMount() {
-        this.setState({
-            originalGravity: 1.052,
-            finalGravity: 1.008
-        })
+    state = {
+        originalGravity: 1.000,
+        finalGravity: 1.000
     }
 
     _handleOriginalGravityChange(value) {
