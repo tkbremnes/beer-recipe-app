@@ -60,11 +60,11 @@ class StrikeWaterCalculator extends Component {
             parseFloat(strikeWaterVolume || 0),
             parseInt(grainTemperature || 0, 10),
             parseInt(firstRestTemperature || 0, 10)
-        );
+        ) || 0;
     }
 
     render() {
-        const calculatedTemperature = this._calculate(this.state) || 0;
+        const calculatedTemperature = Math.round(this._calculate(this.state));
 
         return (
             <Page>

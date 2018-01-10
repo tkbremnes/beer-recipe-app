@@ -26,7 +26,7 @@ class PrimingSugarCalculator extends Component {
             this.state.packageVolume || 0,
             this.state.co2Volume || 0,
             this.state.beverageTemperature || 0
-        );
+        ) || 0;
     }
 
     _handlePackageVolumeChange(value) {
@@ -49,7 +49,8 @@ class PrimingSugarCalculator extends Component {
 
 
     render() {
-        const calculatedValue = this._calculate(this.state);
+        const calculatedValue = Math.round(this._calculate(this.state));
+
         return (
             <Page>
                 <Card header="Priming sugar calculator">
