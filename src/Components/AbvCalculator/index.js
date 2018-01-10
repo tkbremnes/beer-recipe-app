@@ -7,13 +7,16 @@ import Page from "../Page";
 import AdvancedGravityInput from "../AdvancedGravityInput";
 
 import {
-    calculateAbv
+    calculateAbv,
+    calculateAbw,
+    calculateApparentAttenuation,
+    calculateCalories,
 } from "../../Utils/abv_calculator";
 
 class AbvCalculator extends Component {
     state = {
-        originalGravity: 1.000,
-        finalGravity: 1.000
+        originalGravity: 1.054,
+        finalGravity: 1.012
     }
 
     _handleOriginalGravityChange(value) {
@@ -39,6 +42,9 @@ class AbvCalculator extends Component {
         } = this.state;
 
         const abv = this._formatAbv(calculateAbv(originalGravity, finalGravity));
+        const abw = this._formatAbv(calculateAbw(originalGravity, finalGravity));
+        const attenuation = this._formatAbv(calculateApparentAttenuation(originalGravity, finalGravity));
+        const calories = calculateCalories(originalGravity, finalGravity);
 
         return (
             <Page>
@@ -56,7 +62,13 @@ class AbvCalculator extends Component {
                             onChange={ this._handleFinalGravityChange.bind(this) }
                         />
                     </Card>
-                    <p>Abv: { abv }%</p>
+                </Card>
+
+                <Card header="Alcohol contents">
+                    <p>ABV: { abv }%</p>
+                    <p>ABW: { abw }%</p>
+                    <p>Attenuation: { attenuation }%</p>
+                    <p>Calories: { calories }%</p>
                 </Card>
             </Page>
         )
