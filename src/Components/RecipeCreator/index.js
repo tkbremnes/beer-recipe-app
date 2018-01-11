@@ -96,8 +96,11 @@ class RecipeCreator extends Component {
             });
     }
 
-    fermentablesChanged(fermentables) {
-        this.setState({fermentables});
+    fermentablesChanged = (fermentables) => {
+        const recipe = this.state.recipe;
+        recipe.fermentables = fermentables;
+
+        this.setState(recipe);
     }
 
     hopsChanged = (hops) => {
