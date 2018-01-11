@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import {
+    formatSpecificGravity,
+    formatPercent,
+} from "Utils/Format";
+
 import Utils from "Utils/Utils";
 import CalculateBitterness from "Utils/Calculators/calculateIbu";
 import CalculateBoilSize from "Utils/Calculators/calculateBoilSize";
 import CalculatePreboilGravity from "Utils/Calculators/calculatePreboilGravity";
+import {
+    calculateAbv,
+} from "Utils/abv_calculator";
 
 import recipeValidator from 'Utils/recipeValidator';
 
@@ -197,12 +205,13 @@ class RecipeCreator extends Component {
                             header="Gravity targets"
                         >
                             <GravityInput
-                                og={ alcohol.original_gravity }
-                                fg={ alcohol.final_gravity }
+                                og={ this.state.original_gravity }
+                                fg={ this.state.final_gravity }
                                 onChange={ this.gravityChanged.bind(this) }
                             ></GravityInput>
 
-                            <p>Preboil gravity: { calculatedPreboilGravity.toPrecision(4) }</p>
+                            <p>Preboil gravity: { formatSpecificGravity(calculatedPreboilGravity) }</p>
+                            <p>Expected ABV: { formatPercent(calculateAbv(this.state.original_gravity, this.state.final_gravity)) }</p>
                         </BruiCard>
                     </Step>
 
