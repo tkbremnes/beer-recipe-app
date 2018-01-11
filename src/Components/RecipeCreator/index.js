@@ -21,6 +21,8 @@ import {
     fetchRecipe,
 } from 'Actions';
 
+import Recipe from "Model/Recipe"
+
 import {
     fetchIngredients,
 } from "Redux/Ingredients/Actions";
@@ -44,24 +46,9 @@ import Sidebar from "./Sidebar"
 
 import "./style.css";
 
-const emptyRecipe = {
-    fermentables: [],
-    hops: [],
-    yeasts: [],
-    fermentation_schedule: [{time: '', temperature: ''}],
-    mash_schedule: [{time: 60, temperature: 67}],
-    meta: {
-        boil_time: 60,
-        boil_volume: "",
-        preboil_gravity: 1.000,
-        original_gravity: 1.000,
-        final_gravity: 1.000,
-    },
-}
-
 class RecipeCreator extends Component {
     state = {
-        recipe: emptyRecipe,
+        recipe: new Recipe(),
     }
 
     metaChanged(type, value) {
