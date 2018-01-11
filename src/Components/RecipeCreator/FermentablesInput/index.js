@@ -7,6 +7,9 @@ import BruiCard from "../../BruiCard";
 import BruiButton from "../../BruiButton";
 import Select from "Components/BruiSelect";
 
+import FermentableAddition from "Model/FermentableAddition";
+import Fermentable from "Model/Fermentable";
+
 function FermentablesInputHeader() {
     return (
         <thead className="input-row">
@@ -83,7 +86,12 @@ class FermentablesInput extends Component {
             return _f.fermentable.name && _f.weight;
         });
 
-        this.props.onChange(exposedFermentables);
+        this.props.onChange(exposedFermentables.map((addition) => {
+            return new FermentableAddition({
+                fermentable: addition.fermentable,
+                amount: addition.weight,
+            });
+        }));
     }
 
     _handleIngredientChange = (position, ingredient) => {
