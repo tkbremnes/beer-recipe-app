@@ -52,6 +52,10 @@ const emptyRecipe = {
 }
 
 class RecipeCreator extends Component {
+    state = {
+        recipe: emptyRecipe,
+    }
+
     metaChanged(type, value) {
       if (value.target) {
         return this.setState({
@@ -76,15 +80,11 @@ class RecipeCreator extends Component {
     }
 
     componentWillReceiveProps(newProps, oldProps) {
-        if (newProps.recipe !== oldProps.recipe) {
-            this.setState({
-                recipe: newProps.recipe,
-            });
-        }
-    }
-
-    state = {
-        recipe: emptyRecipe,
+        // if (newProps.recipe !== oldProps.recipe) {
+        //     this.setState({
+        //         recipe: newProps.recipe,
+        //     });
+        // }
     }
 
     _saveRecipe() {
