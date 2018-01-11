@@ -30,20 +30,20 @@ class FermentablesInput extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps !== this.props.fermentables) {
-            const fermentables = nextProps.fermentables.slice(0);
+        // if (nextProps !== this.props.fermentables) {
+        //     const fermentables = nextProps.fermentables.slice(0);
 
-            if (fermentables.length === 0) {
-                fermentables.push({
-                    fermentable: {},
-                    weight: "",
-                });
-            }
+        //     if (fermentables.length === 0) {
+        //         fermentables.push({
+        //             fermentable: {},
+        //             weight: "",
+        //         });
+        //     }
 
-            this.setState({
-                fermentables,
-            });
-        }
+        //     this.setState({
+        //         fermentables,
+        //     });
+        // }
     }
 
     addFermentable() {
