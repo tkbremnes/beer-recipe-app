@@ -6,7 +6,6 @@ import {
     formatPercent,
 } from "Utils/Format";
 
-import Utils from "Utils/Utils";
 import CalculateBitterness from "Utils/Calculators/calculateIbu";
 import CalculateBoilSize from "Utils/Calculators/calculateBoilSize";
 import CalculatePreboilGravity from "Utils/Calculators/calculatePreboilGravity";
@@ -148,12 +147,10 @@ class RecipeCreator extends Component {
         } = this.state.recipe;
 
         const recipeValidity = recipeValidator.checkRecipe(recipe);
-        const calculatedMeta = Utils.calculateRecipeMeta(recipe);
-        const alcohol = Utils.calculateAlcoholFromRecipeMeta({
-            original_gravity: recipe.original_gravity,
-            preboil_gravity: recipe.preboil_gravity,
-            final_gravity: recipe.final_gravity,
-        });
+
+        const alcohol = {
+            abv: calculateAbv(this.state.original_gravity, this.state.final_gravity),
+        };
 
         const preboilVolume = recipe.batch_volume ? CalculateBoilSize(recipe.batch_volume, recipe.boil_time, 4) : 0;
         const bitterness = recipe.batch_volume ? CalculateBitterness(
@@ -267,9 +264,9 @@ class RecipeCreator extends Component {
                     <Step>
                         <BruiCard>
                             <p>{ recipe.name || '' }</p>
-                            <p>ibu={ calculatedMeta.bitterness.ibu || 0 }</p>
-                            <p>abv={ calculatedMeta.alcohol.abv || 0 }</p>
-                            <p>ebc={ calculatedMeta.color.ebc || 0 }</p>
+                            <p>ibu={ bitterness || 0 }</p>
+                            <p>abv={ alcohol.abv || 0 }</p>
+                            <p>ebc={ 0 }</p>
 
                             <p>Does this look OK to you?</p>
 
@@ -290,7 +287,7 @@ class RecipeCreator extends Component {
 
                 <Sidebar
                     alcohol={alcohol.abv}
-                    color={ calculatedMeta.color.srm }
+                    color={ 0 }
                     bitterness={bitterness}
                     name={ recipe.name }
                     beerStyle={ recipe.style }
