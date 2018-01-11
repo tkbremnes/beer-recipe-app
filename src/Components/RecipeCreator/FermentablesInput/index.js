@@ -8,7 +8,6 @@ import BruiButton from "../../BruiButton";
 import Select from "Components/BruiSelect";
 
 import FermentableAddition from "Model/FermentableAddition";
-import Fermentable from "Model/Fermentable";
 
 function FermentablesInputHeader() {
     return (
