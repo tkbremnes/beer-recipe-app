@@ -19,7 +19,7 @@ import recipeValidator from 'Utils/recipeValidator';
 import {
     saveRecipe,
     fetchRecipe,
-} from '../../Actions';
+} from 'Actions';
 
 import {
     fetchIngredients,
@@ -30,13 +30,13 @@ import Step from "Components/BruiWizard/Step";
 import BruiCard from 'Components/BruiCard';
 import BruiVolumeInput from 'Components/BruiVolumeInput';
 import Button from 'Components/BruiButton';
+import BruiTimeInput from 'Components/BruiTimeInput';
 
 import FermentablesInput from "./FermentablesInput";
 import HopsInput from "./HopsInput";
 import YeastsInput from "./YeastsInput";
 import MashSchedule from "./MashSchedule";
 import FermentationSchedule from "./FermentationSchedule";
-import BruiTimeInput from '../BruiTimeInput';
 import Description from "./Description";
 import GravityInput from "./GravityInput";
 import MetaInput from "./MetaInput";
