@@ -9,6 +9,8 @@ import Select from "Components/BruiSelect";
 
 import FermentableAddition from "Model/FermentableAddition";
 
+import calculateColor from "Utils/Calculators/calculateColor";
+
 function FermentablesInputHeader() {
     return (
         <thead className="input-row">
@@ -52,7 +54,7 @@ class FermentablesInput extends Component {
         const fermentables = this.state.fermentables;
         fermentables.push({
             fermentable: {},
-            weight: "",
+            amount: "",
         });
 
         this.setState({
@@ -82,13 +84,15 @@ class FermentablesInput extends Component {
 
     _emitOnChange(fermentables) {
         const exposedFermentables = fermentables.filter((_f) => {
-            return _f.fermentable.name && _f.weight;
+            return _f.fermentable.name && _f.amount;
         });
+
+        console.log(fermentables)
 
         this.props.onChange(exposedFermentables.map((addition) => {
             return new FermentableAddition({
                 fermentable: addition.fermentable,
-                amount: addition.weight,
+                amount: addition.amount,
             });
         }));
     }
@@ -103,11 +107,11 @@ class FermentablesInput extends Component {
     }
 
     _handleWeightChange = (position, event) => {
-        const weight = parseInt(event.target.value, 10);
+        const amount = parseInt(event.target.value, 10);
 
         const updatedFermentables = this.state.fermentables.slice();
 
-        updatedFermentables[position].weight = Number.isNaN(weight) ? "" : weight;
+        updatedFermentables[position].amount = Number.isNaN(amount) ? "" : amount;
 
         this.setState(updatedFermentables);
         this._emitOnChange(updatedFermentables);
@@ -123,7 +127,7 @@ class FermentablesInput extends Component {
         } = this.props;
 
         const totalFermentableWeight = fermentables.reduce((a, b) => {
-            return a + parseInt(b.weight || 0, 10);
+            return a + parseInt(b.amount || 0, 10);
         }, 0);
 
         return (
@@ -138,7 +142,7 @@ class FermentablesInput extends Component {
                         ref={(tableBody) => {this._tableBody = tableBody}}
                     >
                         { fermentables.map((_fermentable, i) => {
-                            const printRatio = this._getRatio(_fermentable.weight, totalFermentableWeight);
+                            const printRatio = this._getRatio(_fermentable.amount, totalFermentableWeight);
 
                             return (
                                 <tr className="input-row" key={i}>
@@ -149,7 +153,7 @@ class FermentablesInput extends Component {
                                                 className="right-aligned-denom"
                                                 type="tel"
                                                 maxLength="5"
-                                                value={ _fermentable.weight }
+                                                value={ _fermentable.amount }
                                                 onChange={ this._handleWeightChange.bind(null, i) }
                                             />
                                             <span className="denom">g</span>
@@ -201,10 +205,6 @@ class FermentablesInput extends Component {
                 <BruiCard>
                     <p className="FermentablesInput-totalWeight">
                         Total weight: { totalFermentableWeight } gram
-                    </p>
-
-                    <p className="FermentablesInput-totalWeight">
-                        Color: ?
                     </p>
                 </BruiCard>
             </div>

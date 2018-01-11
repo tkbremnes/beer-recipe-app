@@ -9,6 +9,7 @@ import {
 import CalculateBitterness from "Utils/Calculators/calculateIbu";
 import CalculateBoilSize from "Utils/Calculators/calculateBoilSize";
 import CalculatePreboilGravity from "Utils/Calculators/calculatePreboilGravity";
+import CalculateColor from "Utils/Calculators/calculateColor";
 import {
     calculateAbv,
 } from "Utils/abv_calculator";
@@ -175,6 +176,8 @@ class RecipeCreator extends Component {
             recipe.original_gravity
         ) || 1;
 
+        const color = CalculateColor(this.state.recipe.fermentables, recipe.batch_volume);
+
         return (
             <div className="RecipeCreator">
                 <BruiWizard>
@@ -211,6 +214,9 @@ class RecipeCreator extends Component {
                             fermentableIngredients={this.props.ingredients.fermentables}
                             onChange={this.fermentablesChanged.bind(this)}
                         ></FermentablesInput>
+                        <BruiCard>
+                            <p>Color: { Math.round(color) }°L</p>
+                        </BruiCard>
                     </Step>
 
                     <Step>
@@ -290,7 +296,7 @@ class RecipeCreator extends Component {
 
                 <Sidebar
                     alcohol={alcohol.abv}
-                    color={ 0 }
+                    color={ color }
                     bitterness={bitterness}
                     name={ recipe.name }
                     beerStyle={ recipe.style }
