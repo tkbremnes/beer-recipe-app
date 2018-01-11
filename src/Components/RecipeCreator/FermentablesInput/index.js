@@ -107,7 +107,7 @@ class FermentablesInput extends Component {
 
         const updatedFermentables = this.state.fermentables.slice();
 
-        updatedFermentables[position].weight = weight;
+        updatedFermentables[position].weight = Number.isNaN(weight) ? "" : weight;
 
         this.setState(updatedFermentables);
         this._emitOnChange(updatedFermentables);
